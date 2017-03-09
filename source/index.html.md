@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
+  - php
   - ruby
   - python
   - javascript
@@ -12,18 +13,28 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - basis
+  - questions
+  - blogs
+  - articles
+  - shares
+  - notes
+  - activities
+  - favorites
+  - tags
+  - user
+  - settings
+  - assist
+
 
 search: true
 ---
 
-# Introduction
+# Introduction 简介
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## API 文档简介
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+SegmentFault API 采用 REST 风格设计。所有接口请求地址都是可预期的以及面向资源的。使用规范的 HTTP 响应代码来表示请求结果的正确或错误信息。使用 HTTP 内置的特性，如 HTTP Authentication 和 HTTP 请求方法让接口易于理解。所有的 API 请求都会以规范友好的 JSON 对象格式返回（包括错误信息）。
 
 # Authentication
 
