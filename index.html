@@ -238,13 +238,9 @@
 
 <h1 id="authentication">Authentication</h1>
 
-<p>期望在识别用户登录状态时，将用户的<code class="prettyprint">token</code>以 Header 的方式放入请求中</p>
+<p>期望在识别用户登录状态时，将用户的 <code class="prettyprint">token</code> 以 Header 的方式放入请求中</p>
 
 <p><code class="prettyprint">Authorization: token</code></p>
-
-<aside class="notice">
-需将 <code>token</code> 换成登录用户的 token 值.
-</aside>
 
           <h1 id="basis">Basis 基础</h1>
 
@@ -384,27 +380,27 @@
 <tr>
 <td><strong>isLiked</strong></td>
 <td>Bool</td>
-<td>表示查看该问题的用户是否为该问题点赞，未登录查看默认状态为<code class="prettyprint">false</code></td>
+<td>表示查看该问题的用户是否为该问题点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td><strong>isHated</strong></td>
 <td>Bool</td>
-<td>表示查看该问题的用户是否为踩了该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+<td>表示查看该问题的用户是否为踩了该问题，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td><strong>isFollowed</strong></td>
 <td>Bool</td>
-<td>表示查看该问题的用户是否关注了该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+<td>表示查看该问题的用户是否关注了该问题，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td><strong>isFavorited</strong></td>
 <td>Bool</td>
-<td>表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+<td>表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td><strong>canEdit</strong></td>
 <td>Bool</td>
-<td>表示查看该问题的用户是否能编辑该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+<td>表示查看该问题的用户是否能编辑该问题，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td><strong>excerpt</strong></td>
@@ -485,6 +481,8 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>根据指定 <code class="prettyprint">type</code> 返回一个 <code class="prettyprint">Question</code> 对象的列表。除 <code class="prettyprint">newest</code> 外，列表总是按照创建时间进行排序，总是将最近的 <code class="prettyprint">Question</code> 对象显示在最前面。</p>
+
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -505,16 +503,18 @@
 <tr>
 <td><strong>page</strong></td>
 <td>Int</td>
-<td>列表页面，最小为1</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
 </tr>
 <tr>
 <td><strong>pageSize</strong> <em>optional</em></td>
 <td>Int</td>
-<td>默认20条</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
 </tr>
 </tbody></table>
 
 <h2 id="questions-post">提问题 [/questions] [POST]</h2>
+
+<p>发起创建 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
 
 <blockquote>
 <p>示例参见问题详情</p>
@@ -544,10 +544,16 @@
 </tr>
 </tbody></table>
 
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 <h2 id="questions-put">编辑问题 [/questions] [PUT]</h2>
 
+<p>发起修改 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
 <blockquote>
-<p>示例参见提出问题</p>
+<p>示例参见问题详情</p>
 </blockquote>
 
 <table><thead>
@@ -579,7 +585,13 @@
 </tr>
 </tbody></table>
 
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 <h2 id="questions-delete">删除问题 [/questions] [DELETE]</h2>
+
+<p>发起删除 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
 
 <blockquote>
 <p>示例</p>
@@ -604,7 +616,13 @@
 </tr>
 </tbody></table>
 
+<aside class="notice">
+登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
 <h2 id="questions-search-get">搜索问题 [/questions/search] [GET]</h2>
+
+<p>根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 <code class="prettyprint">Question</code> 对象的列表。</p>
 
 <blockquote>
 <p>示例参见问题列表</p>
@@ -635,6 +653,8 @@
 </tbody></table>
 
 <h2 id="questions-id-get">问题详情 [/questions/{id}] [GET]</h2>
+
+<p>发起一个查询问题的请求，返回一个 <code class="prettyprint">Question</code> 对象的所有属性。</p>
 
 <blockquote>
 <p>示例</p>
@@ -725,44 +745,9 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<table><thead>
-<tr>
-<th>返回说明</th>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>currentStatus</strong></td>
-<td>String</td>
-<td>问题当前状态，共有 5 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">pending</code> 审核中，<code class="prettyprint">rejected</code> 被拒绝，<code class="prettyprint">closed</code> 已关闭，<code class="prettyprint">deleted</code> 已删除 )</td>
-</tr>
-<tr>
-<td><strong>excerpt</strong></td>
-<td>String</td>
-<td>问题的摘录，将除文字外的特殊片段转为文字描述，如{代码&hellip;}</td>
-</tr>
-<tr>
-<td><strong>originalText</strong></td>
-<td>String</td>
-<td>问题主体部分的原文，即题主提问时撰写的原文</td>
-</tr>
-<tr>
-<td><strong>parsedText</strong></td>
-<td>String</td>
-<td>解析为 HTML 后的问题主体部分</td>
-</tr>
-<tr>
-<td><strong>answer</strong></td>
-<td>Array</td>
-<td>该问题下所有回答列表</td>
-</tr>
-<tr>
-<td><strong>suggestion</strong></td>
-<td>Array</td>
-<td>与该问题相关或相似的问题列表，最多返回 3 项</td>
-</tr>
-</tbody></table>
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
 
 <h2 id="questions-id-answers-get">问题答案列表 [/questions/{id}/answers] [GET]</h2>
 
@@ -817,31 +802,9 @@
 </tr>
 </tbody></table>
 
-<table><thead>
-<tr>
-<th>返回说明</th>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>currentStatus</strong></td>
-<td>String</td>
-<td>答案当前状态，共有 3 种，<code class="prettyprint">available</code> 可用的，<code class="prettyprint">ignored</code> 被折叠，<code class="prettyprint">accepted</code> 被采纳</td>
-</tr>
-<tr>
-<td><strong>originalText</strong></td>
-<td>String</td>
-<td>答案主体部分的原文，即答题者回答时撰写的原文</td>
-</tr>
-<tr>
-<td><strong>parsedText</strong></td>
-<td>String</td>
-<td>解析为 HTML 后的答案主体部分</td>
-</tr>
-</tbody></table>
-
 <h2 id="questions-id-suggestions-get">相似问题列表 [/questions/{id}/suggestions] [GET]</h2>
+
+<p>根据一个 <code class="prettyprint">Question</code> 对象的 <code class="prettyprint">id</code> 返回与其相似或相关的问题列表。</p>
 
 <blockquote>
 <p>示例</p>
@@ -880,12 +843,12 @@
 <tr>
 <td><strong>page</strong></td>
 <td>Int</td>
-<td>列表请求页</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
 </tr>
 <tr>
-<td><strong>pageSize</strong></td>
+<td><strong>pageSize</strong> <em>optional</em></td>
 <td>Int</td>
-<td>默认 20</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
 </tr>
 </tbody></table>
 
@@ -950,12 +913,12 @@
 <tr>
 <td><strong>page</strong></td>
 <td>Int</td>
-<td>列表页面，最小为1</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
 </tr>
 <tr>
 <td><strong>pageSize</strong> <em>optional</em></td>
 <td>Int</td>
-<td>默认20条</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
 </tr>
 </tbody></table>
 
@@ -986,9 +949,20 @@
 <td>Array</td>
 <td>该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求</td>
 </tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
 </tbody></table>
 
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
 <h2 id="questions-id-comments-post">发布问题评论 [/questions/{id}/comments] [POST]</h2>
+
+<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
 
 <blockquote>
 <p>Response示例</p>
@@ -1027,9 +1001,13 @@
 <tr>
 <td><strong>text</strong></td>
 <td>String</td>
-<td>问题的内容，限制长度</td>
+<td>评论的内容，限制长度?</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 <h2 id="questions-id-invitations-post">邀请回答 [/questions/{id}/invitations] [POST]</h2>
 
@@ -1056,6 +1034,10 @@
 </tr>
 </tbody></table>
 
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 <h2 id="questions-id-favorites-post">收藏问题 [/questions/{id}/favorites] [POST]</h2>
 
 <blockquote>
@@ -1080,9 +1062,13 @@
 <tr>
 <td><strong>favoriteIds</strong></td>
 <td>Array</td>
-<td>存入的收藏夹的 <code class="prettyprint">id</code></td>
+<td>存入的收藏夹的 <code class="prettyprint">id</code>，可同时存入多个收藏夹</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 <h2 id="questions-id-follows-post">关注问题 [/questions/{id}/follows] [POST]</h2>
 
@@ -1095,69 +1081,43 @@
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<table><thead>
-<tr>
-<th>请求参数</th>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>isFollowed</strong></td>
-<td>Bool</td>
-<td>是否关注问题，<code class="prettyprint">true</code> 为关注，<code class="prettyprint">false</code> 为取消关注</td>
-</tr>
-</tbody></table>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
-<h2 id="questions-id-likes-post">点赞问题 [/questions/{id}/likes] [POST]</h2>
+<h2 id="questions-id-follows-delete">取消关注问题 [/questions/{id}/follows] [DELETE]</h2>
 
-<blockquote>
-<p>Response示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<table><thead>
-<tr>
-<th>请求参数</th>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>isLiked</strong></td>
-<td>Bool</td>
-<td>是否点赞问题，<code class="prettyprint">yes</code> / <code class="prettyprint">1</code>为赞，<code class="prettyprint">no</code> / <code class="prettyprint">0</code>为取消赞</td>
-</tr>
-</tbody></table>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
-<h2 id="questions-id-hates-post">踩问题 [/questions/{id}/hates] [POST]</h2>
+<h2 id="questions-id-likes-post">赞同问题 [/questions/{id}/likes] [POST]</h2>
 
-<blockquote>
-<p>Response示例</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<table><thead>
-<tr>
-<th>请求参数</th>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>isHated</strong></td>
-<td>Bool</td>
-<td>是否踩问题，<code class="prettyprint">yes</code> / <code class="prettyprint">1</code>为踩，<code class="prettyprint">no</code> / <code class="prettyprint">0</code>为取消踩</td>
-</tr>
-</tbody></table>
+<p>当前用户对该问题为 <code class="prettyprint">已反对</code> 状态时，发送该请求时，默认用户对该问题 <code class="prettyprint">取消反对</code> 并 <code class="prettyprint">赞同</code> 的操作。</p>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="questions-id-likes-delete">取消赞同问题 [/questions/{id}/likes] [DELETE]</h2>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="questions-id-hates-post">反对问题 [/questions/{id}/hates] [POST]</h2>
+
+<p>当前用户对该问题为 <code class="prettyprint">已赞同</code> 状态时，发送该请求时，默认用户对该问题 <code class="prettyprint">取消赞同</code> 并 <code class="prettyprint">反对</code> 的操作。</p>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="questions-id-hates-delete">取消反对问题 [/questions/{id}/hates] [DELETE]</h2>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 <h2 id="question-id-report-post">举报问题 [/question/{id}/report] [POST]</h2>
 
@@ -1180,13 +1140,41 @@
 <tr>
 <td><strong>reason</strong></td>
 <td>String</td>
-<td>举报问题的原因，<code class="prettyprint">原因1</code>, <code class="prettyprint">原因2</code>, <code class="prettyprint">原因3</code>, <code class="prettyprint">原因3</code></td>
+<td>举报问题的原因，共 4 种 （<code class="prettyprint">垃圾信息</code>, <code class="prettyprint">违规内容</code>, <code class="prettyprint">不友善内容</code>, <code class="prettyprint">内容质量差</code>）</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
           <h1 id="blogs">Blogs 专栏</h1>
 
 <p>你可以创建一个 <code class="prettyprint">Blog</code> 对象来归档自己的文章。在写文章前必须先拥有一个专栏，你可以通过发起创建文章请求来创建一个新的 <code class="prettyprint">Blog</code> 对象。每个 <code class="prettyprint">Blog</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>问题的标题，一句话简洁概括问题的主要内容</td>
+</tr>
+</tbody></table>
 
           <h1 id="articles">Articles 文章</h1>
 
