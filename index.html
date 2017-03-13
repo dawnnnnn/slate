@@ -6,104 +6,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
-.highlight, .highlight .w {
-  color: #f8f8f2;
-  background-color: #272822;
-}
-.highlight .err {
-  color: #151515;
-  background-color: #ac4142;
-}
-.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
-}
-.highlight .cp {
-  color: #f4bf75;
-}
-.highlight .nt {
-  color: #f4bf75;
-}
-.highlight .o, .highlight .ow {
-  color: #d0d0d0;
-}
-.highlight .p, .highlight .pi {
-  color: #d0d0d0;
-}
-.highlight .gi {
-  color: #90a959;
-}
-.highlight .gd {
-  color: #ac4142;
-}
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
-  font-weight: bold;
-}
-.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
-}
-.highlight .kc {
-  color: #d28445;
-}
-.highlight .kt {
-  color: #d28445;
-}
-.highlight .kd {
-  color: #d28445;
-}
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+  color: #999999;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #f6aa11;
 }
-.highlight .si {
-  color: #8f5536;
+.highlight .go {
+  color: #888888;
 }
-.highlight .se {
-  color: #8f5536;
+.highlight .gp {
+  color: #555555;
 }
-.highlight .nn {
-  color: #f4bf75;
+.highlight .gs {
 }
-.highlight .nc {
-  color: #f4bf75;
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
 }
 .highlight .no {
-  color: #f4bf75;
+  color: #66d9ef;
 }
-.highlight .na {
-  color: #6a9fb5;
+.highlight .kt {
+  color: #66d9ef;
 }
-.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="php">php</a>
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -119,169 +230,25 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        <h1 id="introduction">Introduction 简介</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<h2 id="api">API 文档简介</h2>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>SegmentFault API 采用 REST 风格设计。所有接口请求地址都是可预期的以及面向资源的。使用规范的 HTTP 响应代码来表示请求结果的正确或错误信息。使用 HTTP 内置的特性，如 HTTP Authentication 和 HTTP 请求方法让接口易于理解。所有的 API 请求都会以规范友好的 JSON 对象格式返回（包括错误信息）。</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>期望在识别用户登录状态时，将用户的<code class="prettyprint">token</code>以 Header 的方式放入请求中</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: token</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+需将 <code>token</code> 换成登录用户的 token 值.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+          <h1 id="basis">Basis 基础</h1>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-
-          <h1 id="errors">Errors</h1>
-
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<h2 id="errors">Errors 错误</h2>
 
 <table><thead>
 <tr>
@@ -290,57 +257,963 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>1390412</td>
+<td>该邮箱或用户名已被注册</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>1390905</td>
+<td>用户不存在</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>1390906</td>
+<td>密码错误</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>2390003</td>
+<td>连接超时</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>2390004</td>
+<td>账号未激活</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>2410000</td>
+<td>没有文件被上传</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>2010006</td>
+<td>声望不足</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>3000000</td>
+<td>token 失效</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>3000001</td>
+<td>需要重新登录</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>9999999</td>
+<td>暂时无法连接到服务器</td>
 </tr>
 </tbody></table>
+
+<h2 id="page">Page 分页</h2>
+
+          <h1 id="questions">Questions 问题</h1>
+
+<p>你可以创建一个 <code class="prettyprint">Question</code> 对象向用户提问。<code class="prettyprint">Question</code>是个问题对象，所有问题的主要信息都存储在这个对象中，可以通过发起提问请求来创建一个新的 <code class="prettyprint">Question</code> 对象，也可以随时查询一个或多个 <code class="prettyprint">Question</code> 对象的信息。每个 <code class="prettyprint">Question</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>问题的标题，一句话简洁概括问题的主要内容</td>
+</tr>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>问题当前状态，共有 5 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">pending</code> 审核中，<code class="prettyprint">rejected</code> 被拒绝，<code class="prettyprint">closed</code> 已关闭，<code class="prettyprint">deleted</code> 已删除 )</td>
+</tr>
+<tr>
+<td><strong>created</strong></td>
+<td>Timestamp</td>
+<td>问题创建时间的 Unix 时间戳</td>
+</tr>
+<tr>
+<td><strong>createdDate</strong></td>
+<td>String</td>
+<td>根据 <code class="prettyprint">created</code> 解析的时间</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>Int</td>
+<td>该问题的点赞数，结果 = 用户点赞数 - 用户踩数</td>
+</tr>
+<tr>
+<td><strong>comments</strong></td>
+<td>Int</td>
+<td>该问题的评论数，结果 = 评论问题数 + 回复评论数</td>
+</tr>
+<tr>
+<td><strong>answers</strong></td>
+<td>Int</td>
+<td>该问题的答案数</td>
+</tr>
+<tr>
+<td><strong>favorites</strong></td>
+<td>Int</td>
+<td>该问题的收藏数，即多少名用户收藏了该问题</td>
+</tr>
+<tr>
+<td><strong>followers</strong></td>
+<td>Int</td>
+<td>该问题的关注数，即多少名用户关注了该问题，关注者在该问题有新回答会收到提示</td>
+</tr>
+<tr>
+<td><strong>viewCount</strong></td>
+<td>Int</td>
+<td>该问题的查看次数</td>
+</tr>
+<tr>
+<td><strong>isAccepted</strong></td>
+<td>Bool</td>
+<td>表示该问题是否已被题主采纳最佳答案</td>
+</tr>
+<tr>
+<td><strong>isClosed</strong></td>
+<td>Bool</td>
+<td>表示该问题是否被题主或管理员关闭</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否为该问题点赞，未登录查看默认状态为<code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isHated</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否为踩了该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isFollowed</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否关注了该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isFavorited</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>canEdit</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否能编辑该问题，未登录查看默认状态为<code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>excerpt</strong></td>
+<td>String</td>
+<td>问题的摘录，将除文字外的特殊片段转为文字描述，如{代码&hellip;}</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>问题主体部分的原文，即题主提问时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的问题主体部分</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>创建该问题的用户对象</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>与该问题相关的 <code class="prettyprint">tag</code> 对象列表，最多 5 项，均由用户创建问题时提供</td>
+</tr>
+<tr>
+<td><strong>answer</strong></td>
+<td>Array</td>
+<td>该问题下所有回答列表</td>
+</tr>
+<tr>
+<td><strong>suggestion</strong></td>
+<td>Array</td>
+<td>与该问题相关或相似的问题列表</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-get">问题列表 [/questions] [GET]</h2>
+
+<blockquote>
+<p>Resopnse示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000008642492"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008642492"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mongoose中的addCreateAt方法作用"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489122678</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isClosed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007418730"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FatDong1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fatgong1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sfault-avatar.b0.upaiyun.com/266/885/2668851129-584c1625700ce_medium40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/fatgong1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mongoose"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000345321"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mongodb"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089488"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>问题列表类型，共4种，<code class="prettyprint">hottest</code>：最热，<code class="prettyprint">newest</code>：最新，<code class="prettyprint">unanswered</code>：未回答的，<code class="prettyprint">tag</code>：标签</td>
+</tr>
+<tr>
+<td><strong>tag</strong> <em>optional</em></td>
+<td>String</td>
+<td>type 为 <code class="prettyprint">tag</code> 时必传，填写 tag 的 slug 或者 id</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表页面，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>默认20条</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-post">提问题 [/questions] [POST]</h2>
+
+<blockquote>
+<p>示例参见问题详情</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>问题的标题，限制长度 6-64 个字</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>问题的标签，限制个数 1-5 个，</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>问题的内容，限制长度</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-put">编辑问题 [/questions] [PUT]</h2>
+
+<blockquote>
+<p>示例参见提出问题</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>问题的id</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>问题的标题，限制长度 6-64 个字</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>问题的标签，限制个数 1-5 个，</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>问题的内容，限制长度</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-delete">删除问题 [/questions] [DELETE]</h2>
+
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>问题的id</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-search-get">搜索问题 [/questions/search] [GET]</h2>
+
+<blockquote>
+<p>示例参见问题列表</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>q</strong></td>
+<td>String</td>
+<td>搜索的关键字</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表页面，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>默认20条</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-get">问题详情 [/questions/{id}] [GET]</h2>
+
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000008635436"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008635436"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preg_match的理解"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1489070208"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19 小时前"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"viewCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isClosed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"canEdit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"无法理解后半段话 举例： {代码...} 对着文档，看着例子，还是无法理解，myFn是怎么出来的。正则本身就是来找function xxx这样的字符串的，为什么就把myFn找出来了？"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"无法理解后半段话</span><span class="se">\n\n</span><span class="s2">![clipboard.png](/img/bVKoCP)</span><span class="se">\n\n</span><span class="s2">举例：</span><span class="se">\n</span><span class="s2">    $str=</span><span class="se">\"</span><span class="s2">public function myFn (a, b){//...}</span><span class="se">\"</span><span class="s2">;</span><span class="se">\n</span><span class="s2">    preg_match('/function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/',$str,$m);</span><span class="se">\n</span><span class="s2">    var_dump($m);</span><span class="se">\n</span><span class="s2">    // 输出</span><span class="se">\n</span><span class="s2">    array(2) {</span><span class="se">\n</span><span class="s2">      [0]=&gt;</span><span class="se">\n</span><span class="s2">      string(13) </span><span class="se">\"</span><span class="s2">function myFn</span><span class="se">\"\n</span><span class="s2">      [1]=&gt;</span><span class="se">\n</span><span class="s2">      string(4) </span><span class="se">\"</span><span class="s2">myFn</span><span class="se">\"\n</span><span class="s2">    }</span><span class="se">\n</span><span class="s2">对着文档，看着例子，还是无法理解，myFn是怎么出来的。正则本身就是来找function xxx这样的字符串的，为什么就把myFn找出来了？"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;html&gt;&lt;body&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;无法理解后半段话&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;&lt;img src=</span><span class="se">\"</span><span class="s2">/img/bVKoCP?w=675&amp;amp;h=281</span><span class="se">\"</span><span class="s2"> alt=</span><span class="se">\"</span><span class="s2">clipboard.png</span><span class="se">\"</span><span class="s2"> title=</span><span class="se">\"</span><span class="s2">clipboard.png</span><span class="se">\"</span><span class="s2">&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;举例：&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;$str=</span><span class="se">\"</span><span class="s2">public function myFn (a, b){//...}</span><span class="se">\"</span><span class="s2">;</span><span class="se">\n</span><span class="s2">preg_match('/function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/',$str,$m);</span><span class="se">\n</span><span class="s2">var_dump($m);</span><span class="se">\n</span><span class="s2">// 输出</span><span class="se">\n</span><span class="s2">array(2) {</span><span class="se">\n</span><span class="s2">  [0]=&amp;gt;</span><span class="se">\n</span><span class="s2">  string(13) </span><span class="se">\"</span><span class="s2">function myFn</span><span class="se">\"\n</span><span class="s2">  [1]=&amp;gt;</span><span class="se">\n</span><span class="s2">  string(4) </span><span class="se">\"</span><span class="s2">myFn</span><span class="se">\"\n</span><span class="s2">}&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;对着文档，看着例子，还是无法理解，myFn是怎么出来的。正则本身就是来找function xxx这样的字符串的，为什么就把myFn找出来了？&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;/body&gt;&lt;/html&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/php"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089387"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000004461013"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waker"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://static.segmentfault.com/global/img/user-40.png"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/waker"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waker"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"answer"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1020000008635960"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008635436/a-1020000008635960"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isIgnore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isEdited"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAuthor"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"```</span><span class="se">\n</span><span class="s2">/function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n\n\n</span><span class="s2">```</span><span class="se">\n\\</span><span class="s2">s = 空白，对应上边的空格</span><span class="se">\n</span><span class="s2">[^</span><span class="se">\\</span><span class="s2">s] = [^空白] = 不是空白</span><span class="se">\n</span><span class="s2">+ 一次或多次匹配</span><span class="se">\n</span><span class="s2">* 任意次匹配（包含0次）</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">表达式的［( /function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/ )］匹配项：</span><span class="se">\"</span><span class="s2">function myFn</span><span class="se">\"</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">［([^</span><span class="se">\\</span><span class="s2">s(]*)］中的分组1对应的匹配项［不为空，不能是( ］：</span><span class="se">\"</span><span class="s2">myFn</span><span class="se">\"\n</span><span class="s2">```</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;/function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;</span><span class="se">\\</span><span class="s2">s = 空白，对应上边的空格</span><span class="se">\n</span><span class="s2">[^</span><span class="se">\\</span><span class="s2">s] = [^空白] = 不是空白</span><span class="se">\n</span><span class="s2">+ 一次或多次匹配</span><span class="se">\n</span><span class="s2">* 任意次匹配（包含0次）&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;表达式的［( /function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/ )］匹配项：</span><span class="se">\"</span><span class="s2">function myFn</span><span class="se">\"</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">［([^</span><span class="se">\\</span><span class="s2">s(]*)］中的分组1对应的匹配项［不为空，不能是( ］：</span><span class="se">\"</span><span class="s2">myFn</span><span class="se">\"</span><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"suggestion"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000000094629"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000000094629"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php preg_match_all 处理中文的时候出现乱码"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000008181451"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008181451"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php如何判断站内跟站外链接"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>问题当前状态，共有 5 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">pending</code> 审核中，<code class="prettyprint">rejected</code> 被拒绝，<code class="prettyprint">closed</code> 已关闭，<code class="prettyprint">deleted</code> 已删除 )</td>
+</tr>
+<tr>
+<td><strong>excerpt</strong></td>
+<td>String</td>
+<td>问题的摘录，将除文字外的特殊片段转为文字描述，如{代码&hellip;}</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>问题主体部分的原文，即题主提问时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的问题主体部分</td>
+</tr>
+<tr>
+<td><strong>answer</strong></td>
+<td>Array</td>
+<td>该问题下所有回答列表</td>
+</tr>
+<tr>
+<td><strong>suggestion</strong></td>
+<td>Array</td>
+<td>与该问题相关或相似的问题列表，最多返回 3 项</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-answers-get">问题答案列表 [/questions/{id}/answers] [GET]</h2>
+
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1020000008635960"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008635436/a-1020000008635960"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isIgnore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isEdited"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAuthor"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"```</span><span class="se">\n</span><span class="s2">/function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n\n\n</span><span class="s2">```</span><span class="se">\n\\</span><span class="s2">s = 空白，对应上边的空格</span><span class="se">\n</span><span class="s2">[^</span><span class="se">\\</span><span class="s2">s] = [^空白] = 不是空白</span><span class="se">\n</span><span class="s2">+ 一次或多次匹配</span><span class="se">\n</span><span class="s2">* 任意次匹配（包含0次）</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">表达式的［( /function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/ )］匹配项：</span><span class="se">\"</span><span class="s2">function myFn</span><span class="se">\"</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">［([^</span><span class="se">\\</span><span class="s2">s(]*)］中的分组1对应的匹配项［不为空，不能是( ］：</span><span class="se">\"</span><span class="s2">myFn</span><span class="se">\"\n</span><span class="s2">```</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;/function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;</span><span class="se">\\</span><span class="s2">s = 空白，对应上边的空格</span><span class="se">\n</span><span class="s2">[^</span><span class="se">\\</span><span class="s2">s] = [^空白] = 不是空白</span><span class="se">\n</span><span class="s2">+ 一次或多次匹配</span><span class="se">\n</span><span class="s2">* 任意次匹配（包含0次）&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;表达式的［( /function</span><span class="se">\\</span><span class="s2">s+([^</span><span class="se">\\</span><span class="s2">s(]*)/ )］匹配项：</span><span class="se">\"</span><span class="s2">function myFn</span><span class="se">\"</span><span class="s2">  </span><span class="se">\n\n</span><span class="s2">［([^</span><span class="se">\\</span><span class="s2">s(]*)］中的分组1对应的匹配项［不为空，不能是( ］：</span><span class="se">\"</span><span class="s2">myFn</span><span class="se">\"</span><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表请求页</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong></td>
+<td>Int</td>
+<td>默认 20</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>答案当前状态，共有 3 种，<code class="prettyprint">available</code> 可用的，<code class="prettyprint">ignored</code> 被折叠，<code class="prettyprint">accepted</code> 被采纳</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>答案主体部分的原文，即答题者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的答案主体部分</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-suggestions-get">相似问题列表 [/questions/{id}/suggestions] [GET]</h2>
+
+<blockquote>
+<p>示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000000094629"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000000094629"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php preg_match_all 处理中文的时候出现乱码"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000008181451"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008181451"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php如何判断站内跟站外链接"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表请求页</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong></td>
+<td>Int</td>
+<td>默认 20</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-comments-get">问题评论列表 [/questions/{id}/comments] [GET]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+          </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"repliedCommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@行走的程序猿 找到了吗？"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;@行走的程序猿 找到了吗？&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008273661"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lofy"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sf-static.b0.upaiyun.com/global/img/user-40.png"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表页面，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>默认20条</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>评论主体部分的原文，即评论者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的评论主体部分</td>
+</tr>
+<tr>
+<td><strong>repliedCommentCount</strong></td>
+<td>Int</td>
+<td>该评论的回复数</td>
+</tr>
+<tr>
+<td><strong>repliedComments</strong></td>
+<td>Array</td>
+<td>该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-comments-post">发布问题评论 [/questions/{id}/comments] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repliedCommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>问题的内容，限制长度</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-invitations-post">邀请回答 [/questions/{id}/invitations] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>slug</strong></td>
+<td>String</td>
+<td>被邀请用户的 <code class="prettyprint">slug</code>，<code class="prettyprint">slug</code> 为用户的唯一标识符，一次只可邀请一位用户回答</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-favorites-post">收藏问题 [/questions/{id}/favorites] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>favoriteIds</strong></td>
+<td>Array</td>
+<td>存入的收藏夹的 <code class="prettyprint">id</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-follows-post">关注问题 [/questions/{id}/follows] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>isFollowed</strong></td>
+<td>Bool</td>
+<td>是否关注问题，<code class="prettyprint">true</code> 为关注，<code class="prettyprint">false</code> 为取消关注</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-likes-post">点赞问题 [/questions/{id}/likes] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>是否点赞问题，<code class="prettyprint">yes</code> / <code class="prettyprint">1</code>为赞，<code class="prettyprint">no</code> / <code class="prettyprint">0</code>为取消赞</td>
+</tr>
+</tbody></table>
+
+<h2 id="questions-id-hates-post">踩问题 [/questions/{id}/hates] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>isHated</strong></td>
+<td>Bool</td>
+<td>是否踩问题，<code class="prettyprint">yes</code> / <code class="prettyprint">1</code>为踩，<code class="prettyprint">no</code> / <code class="prettyprint">0</code>为取消踩</td>
+</tr>
+</tbody></table>
+
+<h2 id="question-id-report-post">举报问题 [/question/{id}/report] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>reason</strong></td>
+<td>String</td>
+<td>举报问题的原因，<code class="prettyprint">原因1</code>, <code class="prettyprint">原因2</code>, <code class="prettyprint">原因3</code>, <code class="prettyprint">原因3</code></td>
+</tr>
+</tbody></table>
+
+          <h1 id="blogs">Blogs 专栏</h1>
+
+<p>你可以创建一个 <code class="prettyprint">Blog</code> 对象来归档自己的文章。在写文章前必须先拥有一个专栏，你可以通过发起创建文章请求来创建一个新的 <code class="prettyprint">Blog</code> 对象。每个 <code class="prettyprint">Blog</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+          <h1 id="articles">Articles 文章</h1>
+
+          <h1 id="shares">Shares 分享/头条</h1>
+
+          <h1 id="notes">Notes 笔记</h1>
+
+          <h1 id="activities">Activities 活动</h1>
+
+          <h1 id="favotites">Favotites 收藏</h1>
+
+          <h1 id="tags">Tags 标签</h1>
+
+          <h1 id="user">User 用户</h1>
+
+          <h1 id="settings">Settings 设置</h1>
+
+          <h1 id="assist">Assist 辅助接口</h1>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="php">php</a>
                 <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
