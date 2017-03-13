@@ -643,12 +643,12 @@
 <tr>
 <td><strong>page</strong></td>
 <td>Int</td>
-<td>列表页面，最小为1</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
 </tr>
 <tr>
 <td><strong>pageSize</strong> <em>optional</em></td>
 <td>Int</td>
-<td>默认20条</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
 </tr>
 </tbody></table>
 
@@ -793,12 +793,41 @@
 <tr>
 <td><strong>page</strong></td>
 <td>Int</td>
-<td>列表请求页</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
 </tr>
 <tr>
-<td><strong>pageSize</strong></td>
+<td><strong>pageSize</strong> <em>optional</em></td>
 <td>Int</td>
-<td>默认 20</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>当前答案状态，共有 3 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">ignored</code> 被折叠，<code class="prettyprint">accepted</code> 被采纳 )</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>答案主体部分的原文，即答题者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的答案主体部分</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 </tbody></table>
 
