@@ -38,13 +38,10 @@ SegmentFault API 采用 REST 风格设计。所有接口请求地址都是可预
 
 # Authentication
 
-期望在识别用户登录状态时，将用户的`token`以 Header 的方式放入请求中
+期望在识别用户登录状态时，将用户的 `token` 以 Header 的方式放入请求中
 
 `Authorization: token`
 
-<aside class="notice">
-需将 <code>token</code> 换成登录用户的 token 值.
-</aside>
 
 
 

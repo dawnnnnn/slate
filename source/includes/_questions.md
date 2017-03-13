@@ -17,11 +17,11 @@
 **viewCount** | Int | 该问题的查看次数 |
 **isAccepted** | Bool | 表示该问题是否已被题主采纳最佳答案 |
 **isClosed** | Bool | 表示该问题是否被题主或管理员关闭 |
-**isLiked** | Bool | 表示查看该问题的用户是否为该问题点赞，未登录查看默认状态为`false` |
-**isHated** | Bool | 表示查看该问题的用户是否为踩了该问题，未登录查看默认状态为`false` |
-**isFollowed** | Bool | 表示查看该问题的用户是否关注了该问题，未登录查看默认状态为`false` |
-**isFavorited** | Bool | 表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为`false` |
-**canEdit** | Bool | 表示查看该问题的用户是否能编辑该问题，未登录查看默认状态为`false` |
+**isLiked** | Bool | 表示查看该问题的用户是否为该问题点赞，未登录查看默认状态为 `false` |
+**isHated** | Bool | 表示查看该问题的用户是否为踩了该问题，未登录查看默认状态为 `false` |
+**isFollowed** | Bool | 表示查看该问题的用户是否关注了该问题，未登录查看默认状态为 `false` |
+**isFavorited** | Bool | 表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为 `false` |
+**canEdit** | Bool | 表示查看该问题的用户是否能编辑该问题，未登录查看默认状态为 `false` |
 **excerpt** | String | 问题的摘录，将除文字外的特殊片段转为文字描述，如{代码...} |
 **originalText** | String | 问题主体部分的原文，即题主提问时撰写的原文 |
 **parsedText** | String | 解析为 HTML 后的问题主体部分 |
@@ -74,15 +74,19 @@
 }
 ```
 
+根据指定 `type` 返回一个 `Question` 对象的列表。除 `newest` 外，列表总是按照创建时间进行排序，总是将最近的 `Question` 对象显示在最前面。
+
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **type** | String | 问题列表类型，共4种，`hottest`：最热，`newest`：最新，`unanswered`：未回答的，`tag`：标签 |
 **tag** _optional_| String | type 为 `tag` 时必传，填写 tag 的 slug 或者 id |
-**page** | Int | 列表页面，最小为1 |
-**pageSize** _optional_ | Int | 默认20条 |
+**page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
+**pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
 
 
 ## 提问题 [/questions] [POST]
+
+发起创建 `Question` 对象的请求，需要对用户验证是否为登录状态。
 
 > 示例参见问题详情
 
@@ -92,9 +96,15 @@
 **tags**  | Array  | 问题的标签，限制个数 1-5 个，|
 **text**  | String | 问题的内容，限制长度 |
 
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 ## 编辑问题 [/questions] [PUT]
 
-> 示例参见提出问题
+发起修改 `Question` 对象的请求，需要对用户验证是否为登录状态。
+
+> 示例参见问题详情
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
@@ -103,7 +113,13 @@
 **tags** | Array | 问题的标签，限制个数 1-5 个，|
 **text** | String | 问题的内容，限制长度 |
 
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 ## 删除问题 [/questions] [DELETE]
+
+发起删除 `Question` 对象的请求，需要对用户验证是否为登录状态。
 
 > 示例
 
@@ -119,8 +135,14 @@
 -------------- | -------------- | -------------- |
 **id** | String | 问题的id |
 
+<aside class="notice">
+登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
 
 ## 搜索问题 [/questions/search] [GET]
+
+根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 `Question` 对象的列表。
 
 > 示例参见问题列表
 
@@ -131,6 +153,8 @@
 **pageSize** _optional_ | Int | 默认20条 |
 
 ## 问题详情 [/questions/{id}] [GET]
+
+发起一个查询问题的请求，返回一个 `Question` 对象的所有属性。
 
 > 示例
 
@@ -222,14 +246,10 @@
 }
 ```
 
-返回说明 | | |
--------------- | -------------- | -------------- |
-**currentStatus** | String | 问题当前状态，共有 5 种 (`available` 可用的，`pending` 审核中，`rejected` 被拒绝，`closed` 已关闭，`deleted` 已删除 )|
-**excerpt** | String | 问题的摘录，将除文字外的特殊片段转为文字描述，如{代码...} |
-**originalText** | String | 问题主体部分的原文，即题主提问时撰写的原文 |
-**parsedText** | String | 解析为 HTML 后的问题主体部分 |
-**answer** | Array | 该问题下所有回答列表 |
-**suggestion** | Array | 与该问题相关或相似的问题列表，最多返回 3 项 |
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
 
 ## 问题答案列表 [/questions/{id}/answers] [GET]
 
@@ -271,13 +291,10 @@
 **page** | Int | 列表请求页 |
 **pageSize** | Int | 默认 20 |
 
-返回说明 | | |
--------------- | -------------- | -------------- |
-**currentStatus** | String | 答案当前状态，共有 3 种，`available` 可用的，`ignored` 被折叠，`accepted` 被采纳 |
-**originalText** | String | 答案主体部分的原文，即答题者回答时撰写的原文 |
-**parsedText** | String | 解析为 HTML 后的答案主体部分 |
 
 ## 相似问题列表 [/questions/{id}/suggestions] [GET]
+
+根据一个 `Question` 对象的 `id` 返回与其相似或相关的问题列表。
 
 > 示例
 
@@ -309,8 +326,8 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**page** | Int | 列表请求页 |
-**pageSize** | Int | 默认 20 |
+**page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
+**pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
 
 
 ## 问题评论列表 [/questions/{id}/comments] [GET]
@@ -367,8 +384,8 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**page** 	   | Int | 列表页面，最小为1 |
-**pageSize** _optional_ | Int | 默认20条 |
+**page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
+**pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
 
 返回说明 | | |
 -------------- | -------------- | -------------- |
@@ -376,8 +393,15 @@
 **parsedText** | String | 解析为 HTML 后的评论主体部分 |
 **repliedCommentCount** | Int | 该评论的回复数 |
 **repliedComments** | Array | 该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求 |
+**isLiked** | Bool | 表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 `false` |
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
 
 ## 发布问题评论 [/questions/{id}/comments] [POST]
+
+发起创建 `Comment` 对象的请求，需要对用户验证是否为登录状态。
 
 > Response示例
 
@@ -409,7 +433,11 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**text** | String | 问题的内容，限制长度 |
+**text** | String | 评论的内容，限制长度? |
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 邀请回答 [/questions/{id}/invitations] [POST]
 
@@ -426,6 +454,10 @@
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **slug** | String | 被邀请用户的 `slug`，`slug` 为用户的唯一标识符，一次只可邀请一位用户回答 |
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 收藏问题 [/questions/{id}/favorites] [POST]
 
@@ -444,7 +476,11 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**favoriteIds** | Array | 存入的收藏夹的 `id` |
+**favoriteIds** | Array | 存入的收藏夹的 `id`，可同时存入多个收藏夹 |
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 关注问题 [/questions/{id}/follows] [POST]
 
@@ -458,41 +494,43 @@
 }
 ```
 
-请求参数 | | |
--------------- | -------------- | -------------- |
-**isFollowed** | Bool | 是否关注问题，`true` 为关注，`false` 为取消关注 |
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
-## 点赞问题 [/questions/{id}/likes] [POST]
+## 取消关注问题 [/questions/{id}/follows] [DELETE]
 
-> Response示例
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
-``` json
-{
-  "status": 0,
-  "message": "",
-  "data": ""
-}
-```
+## 赞同问题 [/questions/{id}/likes] [POST]
 
-请求参数 | | |
--------------- | -------------- | -------------- |
-**isLiked** | Bool | 是否点赞问题，`yes` / `1`为赞，`no` / `0`为取消赞 |
+当前用户对该问题为 `已反对` 状态时，发送该请求时，默认用户对该问题 `取消反对` 并 `赞同` 的操作。
 
-## 踩问题 [/questions/{id}/hates] [POST]
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
-> Response示例
+## 取消赞同问题 [/questions/{id}/likes] [DELETE]
 
-``` json
-{
-  "status": 0,
-  "message": "",
-  "data": ""
-}
-```
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
-请求参数 | | |
--------------- | -------------- | -------------- |
-**isHated** | Bool | 是否踩问题，`yes` / `1`为踩，`no` / `0`为取消踩 |
+## 反对问题 [/questions/{id}/hates] [POST]
+
+当前用户对该问题为 `已赞同` 状态时，发送该请求时，默认用户对该问题 `取消赞同` 并 `反对` 的操作。
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+## 取消反对问题 [/questions/{id}/hates] [DELETE]
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 举报问题 [/question/{id}/report] [POST]
 
@@ -508,6 +546,8 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**reason** | String | 举报问题的原因，`原因1`, `原因2`, `原因3`, `原因3` |
+**reason** | String | 举报问题的原因，共 4 种 （`垃圾信息`, `违规内容`, `不友善内容`, `内容质量差`） |
 
-
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
