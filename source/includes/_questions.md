@@ -149,8 +149,8 @@
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **q** | String | 搜索的关键字 |
-**page** | Int | 列表页面，最小为1 |
-**pageSize** _optional_ | Int | 默认20条 |
+**page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
+**pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
 
 ## 问题详情 [/questions/{id}] [GET]
 
@@ -288,9 +288,15 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**page** | Int | 列表请求页 |
-**pageSize** | Int | 默认 20 |
+**page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
+**pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
 
+返回说明 | | |
+-------------- | -------------- | -------------- |
+**currentStatus** | String | 当前答案状态，共有 3 种 (`available` 可用的，`ignored` 被折叠，`accepted` 被采纳 )|
+**originalText** | String | 答案主体部分的原文，即答题者回答时撰写的原文 |
+**parsedText** | String | 解析为 HTML 后的答案主体部分 |
+**isLiked** | Bool | 表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 `false` |
 
 ## 相似问题列表 [/questions/{id}/suggestions] [GET]
 
