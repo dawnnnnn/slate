@@ -2,21 +2,19 @@
 
 ## Errors 错误
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-The Kittn API uses the following error codes:
-
-
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+1390412 | 该邮箱或用户名已被注册
+1390905 | 用户不存在
+1390906 | 密码错误
+2390003 | 连接超时
+2390004 | 账号未激活
+2410000 | 没有文件被上传
+2010006 | 声望不足
+3000000 | token 失效
+3000001 | 需要重新登录
+9999999 | 暂时无法连接到服务器
+
+
+## Page 分页
+

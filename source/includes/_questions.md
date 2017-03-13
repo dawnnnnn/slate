@@ -435,13 +435,16 @@
 {
   "status": 0,
   "message": "",
-  "data": ""
+  "data": {
+    "isFavorited": true,
+    "favorites": 2
+  }
 }
 ```
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**favoriteId** | String | 存入的收藏夹的 `id`，一次只能传一个 `id` |
+**favoriteIds** | Array | 存入的收藏夹的 `id` |
 
 ## 关注问题 [/questions/{id}/follows] [POST]
 
@@ -457,7 +460,7 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**isFollowed** | Bool | 是否关注问题，`yes`/`1`为关注，`no`/`0`为取消关注 |
+**isFollowed** | Bool | 是否关注问题，`true` 为关注，`false` 为取消关注 |
 
 ## 点赞问题 [/questions/{id}/likes] [POST]
 
