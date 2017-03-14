@@ -348,7 +348,7 @@
 <td>该问题的评论数，结果 = 评论问题数 + 回复评论数</td>
 </tr>
 <tr>
-<td><strong>answers</strong></td>
+<td><strong>answerers</strong></td>
 <td>Int</td>
 <td>该问题的答案数</td>
 </tr>
@@ -428,12 +428,12 @@
 <td>与该问题相关的 <code class="prettyprint">tag</code> 对象列表，最多 5 项，均由用户创建问题时提供</td>
 </tr>
 <tr>
-<td><strong>answer</strong></td>
+<td><strong>answers</strong></td>
 <td>Array</td>
 <td>该问题下所有回答列表</td>
 </tr>
 <tr>
-<td><strong>suggestion</strong></td>
+<td><strong>suggestions</strong></td>
 <td>Array</td>
 <td>与该问题相关或相似的问题列表</td>
 </tr>
@@ -458,30 +458,32 @@
         </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isClosed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answerers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007418730"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FatDong1"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fatgong1"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sfault-avatar.b0.upaiyun.com/266/885/2668851129-584c1625700ce_medium40"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/fatgong1"</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007418730"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FatDong1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fatgong1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sfault-avatar.b0.upaiyun.com/266/885/2668851129-584c1625700ce_medium40"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/fatgong1"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mongoose"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000345321"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mongodb"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089488"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
         </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>根据指定 <code class="prettyprint">type</code> 返回一个 <code class="prettyprint">Question</code> 对象的列表。除 <code class="prettyprint">newest</code> 外，列表总是按照创建时间进行排序，总是将最近的 <code class="prettyprint">Question</code> 对象显示在最前面。</p>
+<p>根据指定 <code class="prettyprint">type</code> 返回一个 <code class="prettyprint">Question</code> 对象的列表。除 <code class="prettyprint">hottest</code> 外，列表总是按照创建时间进行排序，总是将最近的 <code class="prettyprint">Question</code> 对象显示在最前面。</p>
 
 <table><thead>
 <tr>
@@ -514,11 +516,11 @@
 
 <h2 id="questions-post">提问题 [/questions] [POST]</h2>
 
-<p>发起创建 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
-
 <blockquote>
 <p>示例参见问题详情</p>
 </blockquote>
+
+<p>发起创建 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
 
 <table><thead>
 <tr>
@@ -550,11 +552,11 @@
 
 <h2 id="questions-put">编辑问题 [/questions] [PUT]</h2>
 
-<p>发起修改 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
-
 <blockquote>
 <p>示例参见问题详情</p>
 </blockquote>
+
+<p>发起修改 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
 
 <table><thead>
 <tr>
@@ -591,8 +593,6 @@
 
 <h2 id="questions-delete">删除问题 [/questions] [DELETE]</h2>
 
-<p>发起删除 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
-
 <blockquote>
 <p>示例</p>
 </blockquote>
@@ -602,6 +602,8 @@
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>发起删除 <code class="prettyprint">Question</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -622,11 +624,11 @@
 
 <h2 id="questions-search-get">搜索问题 [/questions/search] [GET]</h2>
 
-<p>根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 <code class="prettyprint">Question</code> 对象的列表。</p>
-
 <blockquote>
 <p>示例参见问题列表</p>
 </blockquote>
+
+<p>根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 <code class="prettyprint">Question</code> 对象的列表。</p>
 
 <table><thead>
 <tr>
@@ -654,8 +656,6 @@
 
 <h2 id="questions-id-get">问题详情 [/questions/{id}] [GET]</h2>
 
-<p>发起一个查询问题的请求，返回一个 <code class="prettyprint">Question</code> 对象的所有属性。</p>
-
 <blockquote>
 <p>示例</p>
 </blockquote>
@@ -671,7 +671,7 @@
     </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19 小时前"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"answerers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
     </span><span class="s2">"viewCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
@@ -703,7 +703,7 @@
       </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/waker"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"waker"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"answer"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1020000008635960"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008635436/a-1020000008635960"</span><span class="p">,</span><span class="w">
@@ -725,19 +725,19 @@
       </span><span class="p">},</span><span class="w">
       </span><span class="err">...</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"suggestion"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"suggestions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000000094629"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000000094629"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php preg_match_all 处理中文的时候出现乱码"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answerers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000008181451"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008181451"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php如何判断站内跟站外链接"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answerers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="err">...</span><span class="w">
@@ -745,13 +745,13 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>发起一个查询问题的请求，返回一个 <code class="prettyprint">Question</code> 对象的所有属性。</p>
+
 <aside class="notice">
 当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
 </aside>
 
 <h2 id="questions-id-suggestions-get">相似问题列表 [/questions/{id}/suggestions] [GET]</h2>
-
-<p>根据一个 <code class="prettyprint">Question</code> 对象的 <code class="prettyprint">id</code> 返回与其相似或相关的问题列表。</p>
 
 <blockquote>
 <p>示例</p>
@@ -765,14 +765,14 @@
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000000094629"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000000094629"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php preg_match_all 处理中文的时候出现乱码"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answerers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1010000008181451"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/q/1010000008181451"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"php如何判断站内跟站外链接"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answerers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isAccepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="err">...</span><span class="w">
@@ -780,6 +780,8 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>根据一个 <code class="prettyprint">Question</code> 对象的 <code class="prettyprint">id</code> 返回与其相似或相关的问题列表。</p>
+
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -812,6 +814,7 @@
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
         </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
@@ -825,9 +828,8 @@
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-        </span><span class="s2">"repliedCommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
+              </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -887,7 +889,7 @@
 <td>解析为 HTML 后的评论主体部分</td>
 </tr>
 <tr>
-<td><strong>repliedCommentCount</strong></td>
+<td><strong>replies</strong></td>
 <td>Int</td>
 <td>该评论的回复数</td>
 </tr>
@@ -909,8 +911,6 @@
 
 <h2 id="questions-id-comments-post">发布问题评论 [/questions/{id}/comments] [POST]</h2>
 
-<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
-
 <blockquote>
 <p>Response示例</p>
 </blockquote>
@@ -920,6 +920,7 @@
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
     </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
@@ -933,11 +934,12 @@
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"repliedCommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -949,6 +951,35 @@
 <td><strong>text</strong></td>
 <td>String</td>
 <td>评论的内容，限制长度?</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-comments-delete">删除问题评论 [/articles/{id}/comments] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>commentId</strong></td>
+<td>String</td>
+<td>评论的 id</td>
 </tr>
 </tbody></table>
 
@@ -1179,6 +1210,11 @@
 <td>由 SegmentFault 生成的答案对象 ID，16位数字组成的字符串</td>
 </tr>
 <tr>
+<td><strong>questionId</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串，与答案关联</td>
+</tr>
+<tr>
 <td><strong>currentStatus</strong></td>
 <td>String</td>
 <td>答案当前状态，共有 3 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">ignored</code> 被折叠，<code class="prettyprint">accepted</code> 已采纳)</td>
@@ -1227,6 +1263,11 @@
 <td><strong>canEdit</strong></td>
 <td>Bool</td>
 <td>表示查看该答案的用户是否能编辑该答案，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>canAccepted</strong></td>
+<td>Bool</td>
+<td>表示查看该答案的用户是否能采纳该答案，未登录查看默认状态为 <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td><strong>excerpt</strong></td>
@@ -1313,6 +1354,10 @@
 </aside>
 
 <h2 id="questions-id-answers-post">回答问题 [/questions/{id}/answers] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1362,6 +1407,10 @@
 
 <h2 id="questions-id-answers-put">修改答案 [/questions/{id}/answers] [PUT]</h2>
 
+<blockquote>
+<p>返回示例参考 回答问题</p>
+</blockquote>
+
 <table><thead>
 <tr>
 <th>请求参数</th>
@@ -1393,7 +1442,7 @@
 <h2 id="questions-id-answers-delete">删除答案 [/questions/{id}/answers] [DELETE]</h2>
 
 <blockquote>
-<p>示例</p>
+<p>返回示例</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1427,7 +1476,7 @@
 <h2 id="answers-id-comments-get">答案评论列表 [/answers/{id}/comments] [GET]</h2>
 
 <blockquote>
-<p>Response示例</p>
+<p>返回示例</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1437,6 +1486,7 @@
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
         </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
@@ -1450,7 +1500,6 @@
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-        </span><span class="s2">"repliedCommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
@@ -1512,7 +1561,7 @@
 <td>解析为 HTML 后的评论主体部分</td>
 </tr>
 <tr>
-<td><strong>repliedCommentCount</strong></td>
+<td><strong>replies</strong></td>
 <td>Int</td>
 <td>该评论的回复数</td>
 </tr>
@@ -1537,7 +1586,7 @@
 <p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
 
 <blockquote>
-<p>Response示例</p>
+<p>返回示例</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -1545,6 +1594,7 @@
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
     </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
@@ -1558,7 +1608,6 @@
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"repliedCommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1583,20 +1632,129 @@
 
 <h2 id="answers-id-comments-delete">删除评论 [answers/{id}/comments] [DELETE]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>commentId</strong></td>
+<td>String</td>
+<td>评论的 id</td>
+</tr>
+</tbody></table>
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="answers-id-accept-post">采纳答案 [/answers/{id}/accept] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户并且为题主才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="answers-id-accept-delete">取消采纳 [/answers/{id}/accept] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户并且为题主才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="answers-id-ignore-post">折叠答案 [/answers/{id}/ignore] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="answers-id-ignore-delete">取消折叠 [/answers/{id}/ignore] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户才可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 <h2 id="answers-id-likes-post">赞同答案 [/answers/{id}/likes] [POST]</h2>
 
 <p>当前用户对该答案为 <code class="prettyprint">已反对</code> 状态时，发送该请求时，默认用户对该答案 <code class="prettyprint">取消反对</code> 并 <code class="prettyprint">赞同</code> 的操作。</p>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 <h2 id="answers-id-likes-delete">取消赞同答案 [/answers/{id}/likes] [DELETE]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
@@ -1605,12 +1763,38 @@
 
 <p>当前用户对该答案为 <code class="prettyprint">已赞同</code> 状态时，发送该请求时，默认用户对该答案 <code class="prettyprint">取消赞同</code> 并 <code class="prettyprint">反对</code> 的操作。</p>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 <h2 id="answers-id-hates-delete">取消反对答案 [/answers/{id}/hates] [DELETE]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isHated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
@@ -1622,7 +1806,7 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"感谢您为社区做出的贡献！"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1663,7 +1847,7 @@
 <tr>
 <td><strong>url</strong></td>
 <td>String</td>
-<td>SegmentFault 指定路由，与主站对应的 path</td>
+<td>SegmentFault 指定路由，后缀由创建用户创建专栏对象时自定义slug</td>
 </tr>
 <tr>
 <td><strong>name</strong></td>
@@ -1700,9 +1884,1240 @@
 <td>Object</td>
 <td>创建该专栏的用户对象</td>
 </tr>
+<tr>
+<td><strong>Authors</strong></td>
+<td>Array</td>
+<td>该专栏下的所有作者</td>
+</tr>
 </tbody></table>
 
+<h2 id="user-id-blogs-get">专栏列表 [/user/{id}/blogs] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1200000000366002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/gemini"</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini's blog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini @ SegmentFault"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000000199113"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/gemini"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/345/679/3456790589-575d08ad437b0_medium40"</span><span class="p">,</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>url 中所带 id 为 <code class="prettyprint">User</code> 用户对象的 id</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="user-id-blogs-post">创建专栏 [/user/{id}/blogs] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1200000000366002"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/gemini"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini's blog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini @ SegmentFault"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000000199113"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/gemini"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/345/679/3456790589-575d08ad437b0_medium40"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>url 中所带 id 为 <code class="prettyprint">User</code> 用户对象的 id</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>创建专栏时所取的专栏名称</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>创建专栏时简单概括的专栏简介</td>
+</tr>
+<tr>
+<td><strong>slug</strong></td>
+<td>String</td>
+<td>自定义专栏后缀，例: segmentfault.com/blog/slug</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="user-id-blogs-put">修改专栏 [/user/{id}/blogs] [PUT]</h2>
+
+<blockquote>
+<p>返回示例参照创建专栏</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>url 中所带 id 为 <code class="prettyprint">User</code> 用户对象的 id</td>
+</tr>
+<tr>
+<td><strong>blogId</strong></td>
+<td>String</td>
+<td><code class="prettyprint">Blog</code> 专栏对象的唯一标识</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>创建专栏时所取的专栏名称</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>创建专栏时简单概括的专栏简介</td>
+</tr>
+<tr>
+<td><strong>slug</strong></td>
+<td>String</td>
+<td>自定义专栏后缀，例: segmentfault.com/blog/slug</td>
+</tr>
+<tr>
+<td><strong>userSlugs</strong></td>
+<td>Array</td>
+<td>添加一个或多个用户为专栏的作者，提供用户的 <code class="prettyprint">slug</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户并且为专栏创建者才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="user-id-blogs-delete">删除专栏 [user/{id}/blogs] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>url 中所带 id 为 <code class="prettyprint">User</code> 用户对象的 id</td>
+</tr>
+<tr>
+<td><strong>blogId</strong></td>
+<td>String</td>
+<td><code class="prettyprint">Blog</code> 专栏对象的唯一标识</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户并且为专栏创建者才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="blogs-id-get">专栏信息 [/blogs/{id}] [GET]</h2>
+
+<blockquote>
+<p>返回示例参照创建专栏</p>
+</blockquote>
+
+<aside class="notice">
+登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="blogs-id-articles-get">专栏文章 [/blogs/{id}/articles] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000008437202"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000008437202"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Java NIO 入门"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2月22日"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"关于多路复用 很多人用过InputStream和OutputStream接口，用来操作文件、Socket等等 IO 操作。如果是简单的，速度较快的 IO 操作，我们用Stream类的接口，依然可以风生水起。如果你要使用非阻塞的 IO 的话，他们..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"blog"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1200000000366002"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini @ SegmentFault"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini's blog"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/gemini"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000000199113"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gemini"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/345/679/3456790589-575d08ad437b0_small"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/gemini"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<h2 id="blogs-id-follows-post">关注专栏 [/blogs/{id}/follows] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"follower"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="blogs-id-follows-delete">取消关注专栏 [/blogs/{id}/follows] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"follower"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
           <h1 id="articles">Articles 文章</h1>
+
+<p>你可以创建一个 <code class="prettyprint">Article</code> 对象来记录自己的技术见解和学习收获。<code class="prettyprint">Article</code>是个文章对象，所有文章的主要信息都存储在这个对象中，可以通过发起创建文章请求来创建一个新的 <code class="prettyprint">Article</code> 对象，也可以随时查询一个或多个 <code class="prettyprint">Article</code> 对象的信息。每个 <code class="prettyprint">Article</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的文章对象 id，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>文章的标题，一句话简洁概括文章的主要内容</td>
+</tr>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>文章当前状态，共有 5 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">pending</code> 审核中，<code class="prettyprint">rejected</code> 被拒绝，<code class="prettyprint">deleted</code> 已删除，<code class="prettyprint">recommend</code> 被推荐的 )</td>
+</tr>
+<tr>
+<td><strong>createdDate</strong></td>
+<td>String</td>
+<td>根据 <code class="prettyprint">created</code> 解析的时间</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>文章主体部分的原文，即作者撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的文章主体部分</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>Int</td>
+<td>该文章的认可数，结果 = 用户赞同数 - 用户反对数</td>
+</tr>
+<tr>
+<td><strong>favorites</strong></td>
+<td>Int</td>
+<td>该文章的收藏数，即多少名用户收藏了该文章</td>
+</tr>
+<tr>
+<td><strong>comments</strong></td>
+<td>Int</td>
+<td>该文章的评论数，结果 = 评论文章数 + 回复评论数</td>
+</tr>
+<tr>
+<td><strong>viewCount</strong></td>
+<td>Int</td>
+<td>该文章的查看次数</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该文章的用户为该文章点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isAuthor</strong></td>
+<td>Bool</td>
+<td>是否为该文章的作者</td>
+</tr>
+<tr>
+<td><strong>isRecommend</strong></td>
+<td>Bool</td>
+<td>表示该文章是否被管理员推荐</td>
+</tr>
+<tr>
+<td><strong>isFavorited</strong></td>
+<td>Bool</td>
+<td>表示查看该文章的用户是否收藏了该文章，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isDelete</strong></td>
+<td>Bool</td>
+<td>表示该文章是否被作者或管理员删除</td>
+</tr>
+<tr>
+<td><strong>isShowLicense</strong></td>
+<td>Bool</td>
+<td>表示该文章是否</td>
+</tr>
+<tr>
+<td><strong>canEdit</strong></td>
+<td>Bool</td>
+<td>表示查看该文章的用户是否能编辑该文章，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>excerpt</strong></td>
+<td>String</td>
+<td>文章的摘录，将除文字外的特殊片段转为文字描述，如{代码&hellip;}</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>创建该文章的用户对象</td>
+</tr>
+<tr>
+<td><strong>blog</strong></td>
+<td>Object</td>
+<td>该文章所属的专栏对象</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>与该文章相关的 <code class="prettyprint">tag</code> 对象列表，最多 5 项，均由用户创建文章时提供</td>
+</tr>
+<tr>
+<td><strong>commentsDetail</strong></td>
+<td>Array</td>
+<td>该文章下部分评论列表</td>
+</tr>
+<tr>
+<td><strong>suggestions</strong></td>
+<td>Array</td>
+<td>与该文章相关或相似的问题列表</td>
+</tr>
+</tbody></table>
+
+<h2 id="articles-get">文章列表 [/articles] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000008686643"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000008686643"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebAssembly 工作原理"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"本文作者：Lin Clark英文原文：Creating and working with WebAssembly modules 本文是关于 WebAssembly 系列的第四篇文章（本系列共六篇文章，后续会将连接补充归整）。如果你没有读先前文章的话，建议先读这里..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"blog"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1200000008413822"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"前端大哈"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/qianduandaha"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008186491"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"胡子大哈"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/217/801/2178010256-5882edfdd521e_small"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/huzidaha"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dadasa"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>根据指定 <code class="prettyprint">type</code> 返回一个 <code class="prettyprint">Article</code> 对象的列表。除 <code class="prettyprint">hottest</code> 外，列表总是按照创建时间进行排序，总是将最近的 <code class="prettyprint">Article</code> 对象显示在最前面。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>问题列表类型，共4种，<code class="prettyprint">hottest</code>：最热，<code class="prettyprint">newest</code>：最新，<code class="prettyprint">recommendable</code>：推荐的，<code class="prettyprint">tag</code>：标签</td>
+</tr>
+<tr>
+<td><strong>tag</strong> <em>optional</em></td>
+<td>String</td>
+<td>type 为 <code class="prettyprint">tag</code> 时必传，填写 tag 的 slug 或者 id</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<h2 id="articles-post">写文章 [/articles] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000008669330"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"基于Vue2.0高仿微信App·第一期"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000008669330"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isAuthor"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isRecommend"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"showLicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。后期会增加 仿3DTouch、登陆、注册、emoji表情内嵌、朋友圈图片查看等功能，让它更接近微信A..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。后期会增加 **仿3DTouch**、**登陆**、**注册**、**emoji表情内嵌**、**朋友圈图片查看**等功能，让它更接近微信App的用户交互体验。</span><span class="se">\n\n</span><span class="s2">仓库地址：https://github.com/zhaohaodang/vue-WeChat.git</span><span class="se">\n\n</span><span class="s2">## 手机预览</span><span class="se">\n</span><span class="s2">首选红色，加载较快 &lt;2018-03-02过期&gt; 蓝色为备胎，加载较慢</span><span class="se">\n\n</span><span class="s2">!....."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;html&gt;&lt;body&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。后期会增加 &lt;strong&gt;仿3DTouch&lt;/strong&gt;、&lt;strong&gt;登陆&lt;/strong&gt;、&lt;strong&gt;注册&lt;/strong&gt;、&lt;strong&gt;emoji表情内嵌&lt;/strong&gt;、&lt;strong&gt;朋友圈图片查看&lt;/strong&gt;等功能，让它更接近微信App的用户交互体验。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;仓库地址：&lt;a href=</span><span class="se">\"</span><span class="s2">https://github.com/zhaohaodang/vue-WeChat.git</span><span class="se">\"</span><span class="s2">&gt;https://github.com/zhaohaodan...&lt;/a&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;h2&gt;手机预览&lt;/h2&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;首选红色，加载较快 &amp;lt;2018-03-02过期&amp;gt; 蓝色为备胎，加载较慢&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;......"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"blog"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"阿荡"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/zhaohd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1200000005945481"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"个人笔记"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vue-router"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/vue-router"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000004222332"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vuex"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/vuex"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000004469904"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005271861"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/poq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"阿荡同学"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/144/466/1444663761-58c125b7be3c4_huge128"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"suggestions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000006431418"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000006431418"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vue 初接触实战之账单组件"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.8k"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"Vue作为一个构建数据驱动web界面的库，是去年最火的MVVM风格库之一。Vue的用起来有Angular的影子，把很多自定义指令注入html，又吸收了React的优点和精华。比如与Vue的配套使用的Vuex就是从Redux和Flux中借鉴了不少思路。 Vue从去年的下半年开始火起来，目前在Awesomes前端资源库的热度排行里面处于Top2的位置。得益于更..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000005787179"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000005787179"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[vue+vuex+vue-router] 强撸一发暗黑风 markdown 日记应用"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.4k"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"容我思考思考文章结构，能够更容易让新手入门，思考的过程中被小编拒了一次，囧。本文将会从项目开发角度出发，由外向内拆解，自顶而下设计 项目地址 效果图 暗黑风是不是很炫～Step by step,follow me~ 知识储备 vue.js 官网教程 vuex 官方教程 核心思想 vue-router 官方教程 webpack 官方教程 node.js 官方 es6 阮一峰..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"commentsDetail"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>文章的标题，一句话简洁概括文章的主要内容</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>文章主体部分的原文，即作者撰写的原文</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>与该文章相关的 <code class="prettyprint">tag</code> 对象列表，最多 5 项，均由用户创建文章时提供</td>
+</tr>
+<tr>
+<td><strong>blogId</strong></td>
+<td>Int</td>
+<td>该文章所归纳的专栏 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-put">修改文章 [/articles] [PUT]</h2>
+
+<blockquote>
+<p>返回示例参照写文章</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>articleId</strong></td>
+<td>String</td>
+<td>文章的 id</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>文章的标题，一句话简洁概括文章的主要内容</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>文章主体部分的原文，即作者撰写的原文</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>与该文章相关的 <code class="prettyprint">tag</code> 对象列表，最多 5 项，均由用户创建文章时提供</td>
+</tr>
+<tr>
+<td><strong>blogId</strong></td>
+<td>Int</td>
+<td>该文章所归纳的专栏 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户并且为作者才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-delete">删除文章 [/articles] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>articleId</strong></td>
+<td>String</td>
+<td>文章的 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户并且为作者才可以发起请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-search-get">搜索问题 [/articles/search] [GET]</h2>
+
+<blockquote>
+<p>示例参见文章列表</p>
+</blockquote>
+
+<p>根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 <code class="prettyprint">Article</code> 对象的列表。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>q</strong></td>
+<td>String</td>
+<td>搜索的关键字</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<h2 id="articles-id-get">文章详情 [/articles/{id}] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000008669330"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"基于Vue2.0高仿微信App·第一期"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000008669330"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recommend"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"viewCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">602</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isAuthor"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isRecommend"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isDeleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"showLicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。后期会增加 仿3DTouch、登陆、注册、emoji表情内嵌、朋友圈图片查看等功能，让它更接近微信A..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。后期会增加 **仿3DTouch**、**登陆**、**注册**、**emoji表情内嵌**、**朋友圈图片查看**等功能，让它更接近微信App的用户交互体验。</span><span class="se">\n\n</span><span class="s2">仓库地址：https://github.com/zhaohaodang/vue-WeChat.git</span><span class="se">\n\n</span><span class="s2">## 手机预览</span><span class="se">\n</span><span class="s2">首选红色，加载较快 &lt;2018-03-02过期&gt; 蓝色为备胎，加载较慢</span><span class="se">\n\n</span><span class="s2">!....."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;html&gt;&lt;body&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;利用Vue2.0模仿微信app，努力做到以假乱真的效果。个人独立开发，源码中有详细的注释，为新手提供许多有用的提示信息。后期会增加 &lt;strong&gt;仿3DTouch&lt;/strong&gt;、&lt;strong&gt;登陆&lt;/strong&gt;、&lt;strong&gt;注册&lt;/strong&gt;、&lt;strong&gt;emoji表情内嵌&lt;/strong&gt;、&lt;strong&gt;朋友圈图片查看&lt;/strong&gt;等功能，让它更接近微信App的用户交互体验。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;仓库地址：&lt;a href=</span><span class="se">\"</span><span class="s2">https://github.com/zhaohaodang/vue-WeChat.git</span><span class="se">\"</span><span class="s2">&gt;https://github.com/zhaohaodan...&lt;/a&gt;&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;h2&gt;手机预览&lt;/h2&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;首选红色，加载较快 &amp;lt;2018-03-02过期&amp;gt; 蓝色为备胎，加载较慢&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;......"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"blog"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"阿荡"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/zhaohd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1200000005945481"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"个人笔记"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vue-router"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/vue-router"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000004222332"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vuex"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/vuex"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000004469904"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005271861"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/poq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"阿荡同学"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/144/466/1444663761-58c125b7be3c4_huge128"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"suggestions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000006431418"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000006431418"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vue 初接触实战之账单组件"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.8k"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"Vue作为一个构建数据驱动web界面的库，是去年最火的MVVM风格库之一。Vue的用起来有Angular的影子，把很多自定义指令注入html，又吸收了React的优点和精华。比如与Vue的配套使用的Vuex就是从Redux和Flux中借鉴了不少思路。 Vue从去年的下半年开始火起来，目前在Awesomes前端资源库的热度排行里面处于Top2的位置。得益于更..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000005787179"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000005787179"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[vue+vuex+vue-router] 强撸一发暗黑风 markdown 日记应用"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.4k"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"容我思考思考文章结构，能够更容易让新手入门，思考的过程中被小编拒了一次，囧。本文将会从项目开发角度出发，由外向内拆解，自顶而下设计 项目地址 效果图 暗黑风是不是很炫～Step by step,follow me~ 知识储备 vue.js 官网教程 vuex 官方教程 核心思想 vue-router 官方教程 webpack 官方教程 node.js 官方 es6 阮一峰..."</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"commentsDetail"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008669702"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000008669330"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;非常棒，clone下来研究一下，期待一起开发。哈哈&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"非常棒，clone下来研究一下，期待一起开发。哈哈"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005893558"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/liumin_1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"前端小白de窝"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/223/944/22394488-578605e5cc4ea_big64"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008669705"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005893558"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000008669330"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;我可以把vue的项目打包成安卓+ios的app&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"我可以把vue的项目打包成安卓+ios的app"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005893558"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/liumin_1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"前端小白de窝"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/223/944/22394488-578605e5cc4ea_big64"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>发起一个查询文章的请求，返回一个 <code class="prettyprint">Article</code> 对象的所有属性。</p>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
+<h2 id="articles-id-rewards-get">文章赞赏列表 [/articles/{id}/rewards] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amounts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000006157187"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/cridj"</span><span class="err">，</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"helloo"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cridj"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"isEachFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/249/374/2493745047-58a5702e368c8_big64"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>amounts</strong></td>
+<td>String</td>
+<td>单次打赏金额的值</td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>打赏者的类型，共 n 种 (<code class="prettyprint">user</code> 用户)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
+<h2 id="articles-id-rewards-post">赞赏文章 [/articles/{id}/rewards] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
+<p><a href="https://www.pingxx.com/api">Ping++ API文档</a></p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>amounts</strong></td>
+<td>String</td>
+<td>单次打赏金额的值</td>
+</tr>
+<tr>
+<td><strong>paymentMethod</strong></td>
+<td>String</td>
+<td>打赏方式的选择，共 2 种( <code class="prettyprint">wechat</code> 微信， <code class="prettyprint">alipay</code> 支付宝)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
+<h2 id="articles-id-comments-get">文章评论列表 [/articles/{id}/comments] [GET]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+          </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@行走的程序猿 找到了吗？"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;@行走的程序猿 找到了吗？&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008273661"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lofy"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sf-static.b0.upaiyun.com/global/img/user-40.png"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>评论主体部分的原文，即评论者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的评论主体部分</td>
+</tr>
+<tr>
+<td><strong>replies</strong></td>
+<td>Int</td>
+<td>该评论的回复数</td>
+</tr>
+<tr>
+<td><strong>repliedComments</strong></td>
+<td>Array</td>
+<td>该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
+<h2 id="articles-id-comments-post">评论文章 [/articles/{id}/comments] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>评论的内容，限制长度?</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-comments-delete">删除文章评论 [/articles/{id}/comments] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>commentId</strong></td>
+<td>String</td>
+<td>评论的 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-favorites-post">收藏文章 [/articles/{id}/favorites] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-favorites-delete">取消收藏文章 [/articles/{id}/favorites] [DELETE]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-likes-post">点赞文章 [/articles/{id}/likes] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-likes-delete">取消点赞文章 [/articles/{id}/likes] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="articles-id-report-post">举报文章 [/articles/{id}/report] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"感谢您为社区做出的贡献！"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>reason</strong></td>
+<td>String</td>
+<td>举报问题的原因，共 4 种 （<code class="prettyprint">垃圾信息</code>, <code class="prettyprint">违规内容</code>, <code class="prettyprint">不友善内容</code>, <code class="prettyprint">内容质量差</code>）</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
           <h1 id="shares">Shares 分享/头条</h1>
 
