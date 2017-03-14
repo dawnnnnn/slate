@@ -11,7 +11,7 @@
 **createdDate** | String | 根据 `created` 解析的时间 |
 **likes** | Int | 该问题的认可数，结果 = 用户赞同数 - 用户反对数 |
 **comments** | Int | 该问题的评论数，结果 = 评论问题数 + 回复评论数 |
-**answers** | Int | 该问题的答案数 |
+**answerers** | Int | 该问题的答案数 |
 **favorites** | Int | 该问题的收藏数，即多少名用户收藏了该问题 |
 **followers** | Int | 该问题的关注数，即多少名用户关注了该问题，关注者在该问题有新回答会收到提示 |
 **viewCount** | Int | 该问题的查看次数 |
@@ -27,8 +27,8 @@
 **parsedText** | String | 解析为 HTML 后的问题主体部分 |
 **user** | Object | 创建该问题的用户对象 |
 **tags** | Array | 与该问题相关的 `tag` 对象列表，最多 5 项，均由用户创建问题时提供 |
-**answer** | Array | 该问题下所有回答列表 |
-**suggestion** | Array | 与该问题相关或相似的问题列表 |
+**answers** | Array | 该问题下所有回答列表 |
+**suggestions** | Array | 与该问题相关或相似的问题列表 |
 
 
 ## 问题列表 [/questions] [GET]
@@ -50,7 +50,7 @@
   	    "isAccepted": false,
   	    "isClosed": false,
   	    "likes": "5",
-  	    "answers": "7",
+  	    "answerers": "7",
   	    "user": {
   		    "id": "1030000007418730",
   		    "name": "FatDong1",
@@ -76,7 +76,7 @@
 }
 ```
 
-根据指定 `type` 返回一个 `Question` 对象的列表。除 `newest` 外，列表总是按照创建时间进行排序，总是将最近的 `Question` 对象显示在最前面。
+根据指定 `type` 返回一个 `Question` 对象的列表。除 `hottest` 外，列表总是按照创建时间进行排序，总是将最近的 `Question` 对象显示在最前面。
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
@@ -171,7 +171,7 @@
     "createdDate": "19 小时前",
     "likes": "0",
     "comments": "2",
-    "answers": "4",
+    "answerers": "4",
     "favorites": 0,
     "followers": 7,
     "viewCount": 123,
@@ -203,7 +203,7 @@
       "url": "/u/waker",
       "slug": "waker"
     },
-    "answer": [
+    "answers": [
       {
 		"id": "1020000008635960",
 		"url": "/q/1010000008635436/a-1020000008635960",
@@ -225,19 +225,19 @@
 	  },
 	  ...
 	],
-	"suggestion": [
+	"suggestions": [
 	  {
         "id": "1010000000094629",
         "url": "/q/1010000000094629",
         "title": "php preg_match_all 处理中文的时候出现乱码",
-        "answers": "2",
+        "answerers": "2",
         "isAccepted": false
       },
       {
         "id": "1010000008181451",
         "url": "/q/1010000008181451",
         "title": "php如何判断站内跟站外链接",
-        "answers": "1",
+        "answerers": "1",
         "isAccepted": false
       },
       ...
@@ -267,14 +267,14 @@
         "id": "1010000000094629",
         "url": "/q/1010000000094629",
         "title": "php preg_match_all 处理中文的时候出现乱码",
-        "answers": "2",
+        "answerers": "2",
         "isAccepted": false
       },
       {
         "id": "1010000008181451",
         "url": "/q/1010000008181451",
         "title": "php如何判断站内跟站外链接",
-        "answers": "1",
+        "answerers": "1",
         "isAccepted": false
       },
       ...
@@ -304,6 +304,7 @@
       {
         "id": 1050000008644845,
         "likes": "0",
+        "replies": "2",
         "isLiked": false,
         "createdDate": "2 天前",
         "originalText":
@@ -317,7 +318,6 @@
           "name": "行走的程序猿",
           "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"
         }
-        "repliedCommentCount": "2",
         "repliedComments": [
 		      {
             "id": "1050000008655655",
@@ -352,7 +352,7 @@
 -------------- | -------------- | -------------- |
 **originalText** | String | 评论主体部分的原文，即评论者回答时撰写的原文 |
 **parsedText** | String | 解析为 HTML 后的评论主体部分 |
-**repliedCommentCount** | Int | 该评论的回复数 |
+**replies** | Int | 该评论的回复数 |
 **repliedComments** | Array | 该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求 |
 **isLiked** | Bool | 表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 `false` |
 
@@ -371,6 +371,7 @@
   "data": {
     "id": 1050000008644845,
 	"likes": "0",
+  "replies": "0",
 	"isLiked": false,
 	"createdDate": "刚刚",
 	"originalText":
@@ -384,7 +385,6 @@
       "name": "行走的程序猿",
       "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"
 	},
-	"repliedCommentCount": "0",
 	"repliedComments": []
   }
 }
@@ -395,6 +395,26 @@
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **text** | String | 评论的内容，限制长度? |
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+## 删除问题评论 [/articles/{id}/comments] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": ""
+}
+```
+
+请求参数 | | |
+-------------- | -------------- | -------------- |
+**commentId** | String | 评论的 id |
 
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization

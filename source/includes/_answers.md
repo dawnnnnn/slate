@@ -153,6 +153,7 @@
       {
 		"id": 1050000008644845,
 		"likes": "0",
+    "replies": "2",
 		"isLiked": false,
 		"createdDate": "2 天前",
 		"originalText":
@@ -166,7 +167,6 @@
 	      "name": "行走的程序猿",
 	      "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"
 		}
-		"repliedCommentCount": "2",
 		"repliedComments": [
 		  {
         	"id": "1050000008655655",
@@ -201,7 +201,7 @@
 -------------- | -------------- | -------------- |
 **originalText** | String | 评论主体部分的原文，即评论者回答时撰写的原文 |
 **parsedText** | String | 解析为 HTML 后的评论主体部分 |
-**repliedCommentCount** | Int | 该评论的回复数 |
+**replies** | Int | 该评论的回复数 |
 **repliedComments** | Array | 该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求 |
 **isLiked** | Bool | 表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 `false` |
 
@@ -222,6 +222,7 @@
   "data": {
     "id": 1050000008644845,
 	"likes": "0",
+  "replies": "0",
 	"isLiked": false,
 	"createdDate": "刚刚",
 	"originalText":
@@ -235,7 +236,6 @@
       "name": "行走的程序猿",
       "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"
 	},
-	"repliedCommentCount": "0",
 	"repliedComments": []
   }
 }
@@ -260,6 +260,10 @@
   "data": {}
 }
 ```
+
+请求参数 | | |
+-------------- | -------------- | -------------- |
+**commentId** | String | 评论的 id |
 
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
