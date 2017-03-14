@@ -15,6 +15,7 @@ toc_footers:
 includes:
   - basis
   - questions
+  - answers
   - blogs
   - articles
   - shares

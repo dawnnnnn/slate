@@ -9,7 +9,7 @@
 **currentStatus** | String | 问题当前状态，共有 5 种 (`available` 可用的，`pending` 审核中，`rejected` 被拒绝，`closed` 已关闭，`deleted` 已删除 )|
 **created** | Timestamp | 问题创建时间的 Unix 时间戳 |
 **createdDate** | String | 根据 `created` 解析的时间 |
-**likes** | Int | 该问题的点赞数，结果 = 用户点赞数 - 用户踩数 |
+**likes** | Int | 该问题的认可数，结果 = 用户赞同数 - 用户反对数 |
 **comments** | Int | 该问题的评论数，结果 = 评论问题数 + 回复评论数 |
 **answers** | Int | 该问题的答案数 |
 **favorites** | Int | 该问题的收藏数，即多少名用户收藏了该问题 |
@@ -17,8 +17,8 @@
 **viewCount** | Int | 该问题的查看次数 |
 **isAccepted** | Bool | 表示该问题是否已被题主采纳最佳答案 |
 **isClosed** | Bool | 表示该问题是否被题主或管理员关闭 |
-**isLiked** | Bool | 表示查看该问题的用户是否为该问题点赞，未登录查看默认状态为 `false` |
-**isHated** | Bool | 表示查看该问题的用户是否为踩了该问题，未登录查看默认状态为 `false` |
+**isLiked** | Bool | 表示查看该问题的用户是否赞同该问题，未登录查看默认状态为 `false` |
+**isHated** | Bool | 表示查看该问题的用户是否反对该问题，未登录查看默认状态为 `false` |
 **isFollowed** | Bool | 表示查看该问题的用户是否关注了该问题，未登录查看默认状态为 `false` |
 **isFavorited** | Bool | 表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为 `false` |
 **canEdit** | Bool | 表示查看该问题的用户是否能编辑该问题，未登录查看默认状态为 `false` |
@@ -108,7 +108,7 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**id** | String | 问题的id |
+**questionId** | String | 问题的id |
 **title** | String | 问题的标题，限制长度 6-64 个字 |
 **tags** | Array | 问题的标签，限制个数 1-5 个，|
 **text** | String | 问题的内容，限制长度 |
@@ -133,7 +133,7 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**id** | String | 问题的id |
+**questionId** | String | 问题的id |
 
 <aside class="notice">
 登录状态的用户，必须在 Request Header 中带上 Authorization
@@ -250,53 +250,6 @@
 当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
 </aside>
 
-
-## 问题答案列表 [/questions/{id}/answers] [GET]
-
-> 示例
-
-``` json
-{
-  "status": 0,
-  "message": "",
-  "data": {
-	"rows": [
-	  {
-		"id": "1020000008635960",
-		"url": "/q/1010000008635436/a-1020000008635960",
-		"currentStatus": "available",
-		"likes": "3",
-		"comments": "1",
-		"isLiked": false,
-		"isHated": false,
-		"isIgnore": false,
-		"isAccepted": false,
-		"isEdited": true,
-		"isAuthor": false,
-		"createdDate": "18 小时前",
-		"modifiedDate": "18 小时前",
-		"originalText": 
-		  "```\n/function\\s+([^\\s(]*)/\n```\n\n\n```\n\\s = 空白，对应上边的空格\n[^\\s] = [^空白] = 不是空白\n+ 一次或多次匹配\n* 任意次匹配（包含0次）\n```\n\n```\n表达式的［( /function\\s+([^\\s(]*)/ )］匹配项：\"function myFn\"  \n\n［([^\\s(]*)］中的分组1对应的匹配项［不为空，不能是( ］：\"myFn\"\n```\n\n",
-		"parsedText": 
-		  "\n<pre><code>/function\\s+([^\\s(]*)/</code></pre>\n<pre><code>\\s = 空白，对应上边的空格\n[^\\s] = [^空白] = 不是空白\n+ 一次或多次匹配\n* 任意次匹配（包含0次）</code></pre>\n<pre><code>表达式的［( /function\\s+([^\\s(]*)/ )］匹配项：\"function myFn\"  \n\n［([^\\s(]*)］中的分组1对应的匹配项［不为空，不能是( ］：\"myFn\"</code></pre>\n",
-	  },
-	  ...
-	]
-  }
-}
-```
-
-请求参数 | | |
--------------- | -------------- | -------------- |
-**page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
-**pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
-
-返回说明 | | |
--------------- | -------------- | -------------- |
-**currentStatus** | String | 当前答案状态，共有 3 种 (`available` 可用的，`ignored` 被折叠，`accepted` 被采纳 )|
-**originalText** | String | 答案主体部分的原文，即答题者回答时撰写的原文 |
-**parsedText** | String | 解析为 HTML 后的答案主体部分 |
-**isLiked** | Bool | 表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 `false` |
 
 ## 相似问题列表 [/questions/{id}/suggestions] [GET]
 
@@ -496,7 +449,10 @@
 {
   "status": 0,
   "message": "",
-  "data": ""
+  "data": {
+    "isFollowed": true,
+    "followers": "3"
+  }
 }
 ```
 
@@ -506,6 +462,20 @@
 
 ## 取消关注问题 [/questions/{id}/follows] [DELETE]
 
+> Response示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isFollowed": false,
+    "followers": "2"
+  }
+}
+```
+
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
@@ -514,11 +484,39 @@
 
 当前用户对该问题为 `已反对` 状态时，发送该请求时，默认用户对该问题 `取消反对` 并 `赞同` 的操作。
 
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": true,
+    "isHated": false,
+    "likes": "3"
+  }
+}
+```
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 ## 取消赞同问题 [/questions/{id}/likes] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": false,
+    "isHated": false,
+    "likes": "2"
+  }
+}
+```
 
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
@@ -528,11 +526,39 @@
 
 当前用户对该问题为 `已赞同` 状态时，发送该请求时，默认用户对该问题 `取消赞同` 并 `反对` 的操作。
 
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": false,
+    "isHated": true,
+    "likes": "1"
+  }
+}
+```
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 ## 取消反对问题 [/questions/{id}/hates] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": false,
+    "isHated": false,
+    "likes": "2"
+  }
+}
+```
 
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
@@ -545,7 +571,7 @@
 ``` json
 {
   "status": 0,
-  "message": "",
+  "message": "感谢您为社区做出的贡献！",
   "data": ""
 }
 ```
@@ -557,3 +583,7 @@
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
+
+
+
+

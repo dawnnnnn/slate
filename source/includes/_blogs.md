@@ -4,6 +4,13 @@
 
 属性 | | |
 -------------- | -------------- | -------------- |
-**id** | String | 由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串 |
+**id** | String | 由 SegmentFault 生成的专栏对象 id，16位数字组成的字符串 |
 **url** | String | SegmentFault 指定路由，与主站对应的 path |
-**title** | String | 问题的标题，一句话简洁概括问题的主要内容 |
+**name** | String | 专栏的名称 |
+**desc** | String | 专栏的简介，简单概括开专栏的原因或专栏的主要主题，限制长度 |
+**currentStatus** | String ||
+**isFollowed** | Bool | 表示查看该专栏的用户是否关注了该问题，未登录查看默认状态为 `false` |
+**articles** | Int | 该专栏下，已发布文章的数量 |
+**followers** | Int | 关注该专栏的用户数量 |
+**user** | Object | 创建该专栏的用户对象 |
+
