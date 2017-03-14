@@ -4,6 +4,7 @@
 属性 | | |
 -------------- | -------------- | -------------- |
 **id** | String | 由 SegmentFault 生成的答案对象 ID，16位数字组成的字符串 |
+**questionId** | String | 由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串，与答案关联|
 **currentStatus** | String | 答案当前状态，共有 3 种 (`available` 可用的，`ignored` 被折叠，`accepted` 已采纳)|
 **created** | Timestamp | 答案创建时间的 Unix 时间戳 |
 **createdDate** | String | 根据 `created` 解析的时间 |
@@ -14,6 +15,7 @@
 **isLiked** | Bool | 表示查看该答案的用户是否赞同该答案，未登录查看默认状态为 `false` |
 **isHated** | Bool | 表示查看该答案的用户是否反对该答案，未登录查看默认状态为 `false` |
 **canEdit** | Bool | 表示查看该答案的用户是否能编辑该答案，未登录查看默认状态为 `false` |
+**canAccepted** | Bool | 表示查看该答案的用户是否能采纳该答案，未登录查看默认状态为 `false` |
 **excerpt** | String | 答案的摘录，将除文字外的特殊片段转为文字描述，如{代码...} |
 **originalText** | String | 答案主体部分的原文，即题主提问时撰写的原文 |
 **parsedText** | String | 解析为 HTML 后的答案主体部分 |
@@ -66,6 +68,8 @@
 
 ## 回答问题 [/questions/{id}/answers] [POST]
 
+> 返回示例
+
 ``` json
 {
   "status": 0,
@@ -103,6 +107,8 @@
 
 ## 修改答案 [/questions/{id}/answers] [PUT]
 
+> 返回示例参考 回答问题
+
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **id** | String | url 中所带 id 为 `Question` 问题对象的 id |
@@ -115,7 +121,7 @@
 
 ## 删除答案 [/questions/{id}/answers] [DELETE]
 
-> 示例
+> 返回示例
 
 ``` json
 {
@@ -136,7 +142,7 @@
 
 ## 答案评论列表 [/answers/{id}/comments] [GET]
 
-> Response示例
+> 返回示例
 
 ``` json
 {
@@ -207,7 +213,7 @@
 
 发起创建 `Comment` 对象的请求，需要对用户验证是否为登录状态。
 
-> Response示例
+> 返回示例
 
 ``` json
 {
@@ -245,19 +251,121 @@
 
 ## 删除评论 [answers/{id}/comments] [DELETE]
 
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {}
+}
+```
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+## 采纳答案 [/answers/{id}/accept] [POST]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": ""
+}
+```
+
+<aside class="notice">
+只有登录用户并且为题主才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+## 取消采纳 [/answers/{id}/accept] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": ""
+}
+```
+
+<aside class="notice">
+只有登录用户并且为题主才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+## 折叠答案 [/answers/{id}/ignore] [POST]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": ""
+}
+```
+
+<aside class="notice">
+只有登录用户才可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+## 取消折叠 [/answers/{id}/ignore] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": ""
+}
+```
+
+<aside class="notice">
+只有登录用户才可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 ## 赞同答案 [/answers/{id}/likes] [POST]
 
 当前用户对该答案为 `已反对` 状态时，发送该请求时，默认用户对该答案 `取消反对` 并 `赞同` 的操作。
 
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": true,
+    "isHated": false,
+    "likes": "3"
+  }
+}
+```
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 ## 取消赞同答案 [/answers/{id}/likes] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": false,
+    "isHated": false,
+    "likes": "2"
+  }
+}
+```
 
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
@@ -267,11 +375,39 @@
 
 当前用户对该答案为 `已赞同` 状态时，发送该请求时，默认用户对该答案 `取消赞同` 并 `反对` 的操作。
 
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": false,
+    "isHated": true,
+    "likes": "1"
+  }
+}
+```
+
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
 ## 取消反对答案 [/answers/{id}/hates] [DELETE]
+
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "isLiked": false,
+    "isHated": false,
+    "likes": "2"
+  }
+}
+```
 
 <aside class="notice">
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
@@ -284,7 +420,7 @@
 ``` json
 {
   "status": 0,
-  "message": "",
+  "message": "感谢您为社区做出的贡献！",
   "data": ""
 }
 ```
