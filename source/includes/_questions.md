@@ -40,36 +40,38 @@
   "status": 0,
   "message": "",
   "data": {
-	"rows": [
-	  {
-	    "id": "1010000008642492",
-	    "url": "/q/1010000008642492",
-	    "title": "mongoose中的addCreateAt方法作用",
-	    "created": 1489122678,
-	    "createdDate": "3 小时前",
-	    "isAccepted": false,
-	    "isClosed": false,
-	    "likes": "5",
-	    "answers": "7",
-	    "user": {
-		  "id": "1030000007418730",
-		  "name": "FatDong1",
-		  "slug": "fatgong1",
-		  "avatarUrl": "http://sfault-avatar.b0.upaiyun.com/266/885/2668851129-584c1625700ce_medium40",
-		  "url": "/u/fatgong1"
-	    },
-	    "tags": [
-	      {
-			"name": "mongoose",
-			"id": "1040000000345321"
-		  },
-		  {
-			"name": "mongodb",
-			"id": "1040000000089488"
-		  }
-	    ]
-	  }
-	]
+  	"rows": [
+  	  {
+  	    "id": "1010000008642492",
+  	    "url": "/q/1010000008642492",
+  	    "title": "mongoose中的addCreateAt方法作用",
+  	    "created": 1489122678,
+  	    "createdDate": "3 小时前",
+  	    "isAccepted": false,
+  	    "isClosed": false,
+  	    "likes": "5",
+  	    "answers": "7",
+  	    "user": {
+  		    "id": "1030000007418730",
+  		    "name": "FatDong1",
+  		    "slug": "fatgong1",
+  		    "avatarUrl": "http://sfault-avatar.b0.upaiyun.com/266/885/2668851129-584c1625700ce_medium40",
+  		    "url": "/u/fatgong1"
+  	    },
+  	    "tags": [
+          {
+            "name": "mongoose",
+            "id": "1040000000345321"
+  		    },
+  		    {
+            "name": "mongodb",
+            "id": "1040000000089488"
+  		    },
+          ...
+  	    ]
+  	  },
+      ...
+  	]
   }
 }
 ```
@@ -86,9 +88,9 @@
 
 ## 提问题 [/questions] [POST]
 
-发起创建 `Question` 对象的请求，需要对用户验证是否为登录状态。
-
 > 示例参见问题详情
+
+发起创建 `Question` 对象的请求，需要对用户验证是否为登录状态。
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
@@ -102,9 +104,9 @@
 
 ## 编辑问题 [/questions] [PUT]
 
-发起修改 `Question` 对象的请求，需要对用户验证是否为登录状态。
-
 > 示例参见问题详情
+
+发起修改 `Question` 对象的请求，需要对用户验证是否为登录状态。
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
@@ -119,8 +121,6 @@
 
 ## 删除问题 [/questions] [DELETE]
 
-发起删除 `Question` 对象的请求，需要对用户验证是否为登录状态。
-
 > 示例
 
 ``` json
@@ -130,6 +130,8 @@
   "data": ""
 }
 ```
+
+发起删除 `Question` 对象的请求，需要对用户验证是否为登录状态。
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
@@ -142,9 +144,9 @@
 
 ## 搜索问题 [/questions/search] [GET]
 
-根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 `Question` 对象的列表。
-
 > 示例参见问题列表
+
+根据提供的关键词，搜索标题或内容中带有该关键词的问题，返回一个 `Question` 对象的列表。
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
@@ -154,8 +156,6 @@
 
 ## 问题详情 [/questions/{id}] [GET]
 
-发起一个查询问题的请求，返回一个 `Question` 对象的所有属性。
-
 > 示例
 
 ``` json
@@ -163,7 +163,7 @@
   "status": 0,
   "message": "",
   "data": {
-	"id": "1010000008635436",
+    "id": "1010000008635436",
     "url": "/q/1010000008635436",
     "title": "preg_match的理解",
     "currentStatus": "available",
@@ -246,14 +246,14 @@
 }
 ```
 
+发起一个查询问题的请求，返回一个 `Question` 对象的所有属性。
+
 <aside class="notice">
 当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
 </aside>
 
 
 ## 相似问题列表 [/questions/{id}/suggestions] [GET]
-
-根据一个 `Question` 对象的 `id` 返回与其相似或相关的问题列表。
 
 > 示例
 
@@ -283,6 +283,8 @@
 }
 ```
 
+根据一个 `Question` 对象的 `id` 返回与其相似或相关的问题列表。
+
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
@@ -300,40 +302,40 @@
   "data": {
     "rows": [
       {
-		"id": 1050000008644845,
-		"likes": "0",
-		"isLiked": false,
-		"createdDate": "2 天前",
-		"originalText":
-		  "我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。",
-		"parsedText": 
-		  "<p>我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。</p>",
-		"user": {
-	      "id": "1030000007653230",
-	      "url": "/u/wei_hq",
-	      "slug": "wei_hq",
-	      "name": "行走的程序猿",
-	      "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"
-		}
-		"repliedCommentCount": "2",
-		"repliedComments": [
-		  {
-        	"id": "1050000008655655",
-        	"likes": "0",
-        	"isLiked": false,
-        	"createdDate": "1 天前",
-        	"originalText": "@行走的程序猿 找到了吗？",
-        	"parsedText": "<p>@行走的程序猿 找到了吗？</p>",
-        	"user": {
+        "id": 1050000008644845,
+        "likes": "0",
+        "isLiked": false,
+        "createdDate": "2 天前",
+        "originalText":
+          "我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。",
+        "parsedText": 
+          "<p>我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。</p>",
+        "user": {
+          "id": "1030000007653230",
+          "url": "/u/wei_hq",
+          "slug": "wei_hq",
+          "name": "行走的程序猿",
+          "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"
+        }
+        "repliedCommentCount": "2",
+        "repliedComments": [
+		      {
+            "id": "1050000008655655",
+            "likes": "0",
+            "isLiked": false,
+            "createdDate": "1 天前",
+            "originalText": "@行走的程序猿 找到了吗？",
+            "parsedText": "<p>@行走的程序猿 找到了吗？</p>",
+            "user": {
               "id": "1030000008273661",
               "url": "/u/luofangyong",
               "slug": "luofangyong",
               "name": "lofy",
               "avatarUrl": "https://sf-static.b0.upaiyun.com/global/img/user-40.png"
-        	}
-    	  },
-    	  ...
-		]
+            }
+          },
+          ...
+        ]
       },
       ...
     ]
@@ -359,8 +361,6 @@
 </aside>
 
 ## 发布问题评论 [/questions/{id}/comments] [POST]
-
-发起创建 `Comment` 对象的请求，需要对用户验证是否为登录状态。
 
 > Response示例
 
@@ -389,6 +389,8 @@
   }
 }
 ```
+
+发起创建 `Comment` 对象的请求，需要对用户验证是否为登录状态。
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
