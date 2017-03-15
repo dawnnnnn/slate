@@ -3121,7 +3121,1281 @@
 
           <h1 id="shares">Shares 分享/头条</h1>
 
+<p>你可以创建一个 <code class="prettyprint">Share</code> 对象向用户分享。<code class="prettyprint">Question</code>是个头条对象，所有头条的主要信息都存储在这个对象中，可以通过发起创建头条请求来创建一个新的 <code class="prettyprint">Share</code> 对象，也可以随时查询一个或多个 <code class="prettyprint">Share</code> 对象的信息。每个 <code class="prettyprint">Share</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>头条的标题，多为原链接标题，可由用户在创建时自行更改</td>
+</tr>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>问题当前状态，共有 5 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">deleted</code> 已删除 )</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>String</td>
+<td>头条出处的 Host</td>
+</tr>
+<tr>
+<td><strong>originUrl</strong></td>
+<td>String</td>
+<td>头条出处的原url</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>分享该头条时，用户的推荐语</td>
+</tr>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>头条的类型，共 2 种（ <code class="prettyprint">url</code> 链接头条，<code class="prettyprint">text</code> 文本头条）</td>
+</tr>
+<tr>
+<td><strong>channel</strong></td>
+<td>Srting</td>
+<td>头条的频道，共 9 种 ()</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>重新解析排版后的头条主体部分</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>头条解析后的纯文本主体部分</td>
+</tr>
+<tr>
+<td><strong>createdDate</strong></td>
+<td>String</td>
+<td>根据 <code class="prettyprint">created</code> 解析的时间</td>
+</tr>
+<tr>
+<td><strong>thumbnailUrl</strong></td>
+<td>String</td>
+<td>带缩略图头条的图片链接</td>
+</tr>
+<tr>
+<td><strong>views</strong></td>
+<td>Int</td>
+<td>该分享的阅读数</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>Int</td>
+<td>该分享的点赞数</td>
+</tr>
+<tr>
+<td><strong>comments</strong></td>
+<td>Int</td>
+<td>该问题的评论数，结果 = 评论问题数 + 回复评论数</td>
+</tr>
+<tr>
+<td><strong>favorites</strong></td>
+<td>Int</td>
+<td>该问题的收藏数，即多少名用户收藏了该问题</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否赞同该问题，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isFavorited</strong></td>
+<td>Bool</td>
+<td>表示查看该问题的用户是否收藏了该问题，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>分享该头条的用户对象</td>
+</tr>
+</tbody></table>
+
+<h2 id="shares-get">头条列表 [/shares] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1210000008691272"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"一位月收入7000开发者的技术选型"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/p/1210000008691272"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;p&gt;昨天看到有人在研究技术选型，于是自己也写了一个列表。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;所有服务均以高稳定性和低成本作为前提而考虑，适合个人学习和低成本创业使用。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4 小时前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000002377284"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"利维坦少女"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/catscarlet"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/255/540/2555403060-55d8ba52c6b94_big64"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"程序员"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>根据指定 <code class="prettyprint">type</code> 返回一个 <code class="prettyprint">Share</code> 对象的列表。列表排序方式由用户自主选择。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>sort</strong></td>
+<td>String</td>
+<td>问题列表类型，共3种，<code class="prettyprint">hottest</code>：最热，<code class="prettyprint">newest</code>：最新</td>
+</tr>
+<tr>
+<td><strong>channel</strong> <em>optional</em></td>
+<td>String</td>
+<td>type 为 <code class="prettyprint">tag</code> 时必传，填写 tag 的 slug 或者 id</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-post">发布头条 [/shares] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1210000008691272"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"一位月收入7000开发者的技术选型"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blog.catscarlet.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/p/1210000008691272"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;p&gt;昨天看到有人在研究技术选型，于是自己也写了一个列表。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;所有服务均以高稳定性和低成本作为前提而考虑，适合个人学习和低成本创业使用。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"程序员"</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;昨天看到有人在研究技术选型，于是自己也写了一个列表。&lt;/p&gt;</span><span class="se">\n\n</span><span class="s2">&lt;p&gt;以下推荐，除了云服务是一直要收费的外，其他在开发要求中均是免费的服务。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;h2 id=</span><span class="se">\"</span><span class="s2">-</span><span class="se">\"</span><span class="s2">&gt;公司级&lt;/h2&gt;</span><span class="se">\n</span><span class="s2">&lt;h3 id=</span><span class="se">\"</span><span class="s2">-</span><span class="se">\"</span><span class="s2">&gt;技术相关&lt;/h3&gt;</span><span class="se">\n</span><span class="s2">&lt;table&gt;</span><span class="se">\n</span><span class="s2">&lt;thead&gt;&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;th&gt;类型&lt;/th&gt;</span><span class="se">\n</span><span class="s2">&lt;th&gt;选择&lt;/th&gt;</span><span class="se">\n</span><span class="s2">&lt;th&gt;理由&lt;/th&gt;</span><span class="se">\n</span><span class="s2">&lt;/tr&gt;&lt;/thead&gt;</span><span class="se">\n</span><span class="s2">&lt;tbody&gt;</span><span class="se">\n</span><span class="s2">&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;后台语言&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;PHP 7&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;因为其他后端语言我不熟QAQ&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;/tr&gt;</span><span class="se">\n</span><span class="s2">&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;数据库&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;Mysql/Mariadb&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;用法一样&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;/tr&gt;</span><span class="se">\n</span><span class="s2">&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;缓存&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;Redis&lt;/td&gt;..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blog.catscarlet.com/201703142751.html"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"昨天看到有人在研究技术选型，于是自己也写了一个列表。</span><span class="se">\r\n\r\n</span><span class="s2">所有服务均以高稳定性和低成本作为前提而考虑，适合个人学习和低成本创业使用。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000002377284"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"利维坦少女"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/catscarlet"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/255/540/2555403060-55d8ba52c6b94_big64"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>发起创建 <code class="prettyprint">Share</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>想要分享的 <code class="prettyprint">url</code></td>
+</tr>
+<tr>
+<td><strong>channel</strong></td>
+<td>String</td>
+<td>分享的链接所属的频道，共 8 种 （<code class="prettyprint">前端</code>, <code class="prettyprint">后端</code>, <code class="prettyprint">iOS</code>, <code class="prettyprint">Android</code>, <code class="prettyprint">安全</code>, <code class="prettyprint">工具</code>, <code class="prettyprint">程序员</code>, <code class="prettyprint">行业</code>）</td>
+</tr>
+<tr>
+<td><strong>desc</strong> <em>optional</em></td>
+<td>String</td>
+<td>分享该头条时用户的描述与见解</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-put">修改头条 [/shares] [PUT]</h2>
+
+<blockquote>
+<p>示例参见发布头条</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>shareId</strong></td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>想要分享的 <code class="prettyprint">url</code></td>
+</tr>
+<tr>
+<td><strong>channel</strong></td>
+<td>String</td>
+<td>分享的链接所属的频道，共 8 种 （<code class="prettyprint">前端</code>, <code class="prettyprint">后端</code>, <code class="prettyprint">iOS</code>, <code class="prettyprint">Android</code>, <code class="prettyprint">安全</code>, <code class="prettyprint">工具</code>, <code class="prettyprint">程序员</code>, <code class="prettyprint">行业</code>）</td>
+</tr>
+<tr>
+<td><strong>desc</strong> <em>optional</em></td>
+<td>String</td>
+<td>分享该头条时用户的描述与见解</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户且为头条发布者可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-delete">删除头条 [/shares] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>shareId</strong></td>
+<td>String</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户且为头条发布者可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-spider-get">爬取头条 [/shares/spider] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"titile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"百度一下，你就知道"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.baidu.com"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>想要抓取解析的 <code class="prettyprint">url</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="shares-id-get">头条详情 [/shares/{id}] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1210000008691272"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"一位月收入7000开发者的技术选型"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blog.catscarlet.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/p/1210000008691272"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;p&gt;昨天看到有人在研究技术选型，于是自己也写了一个列表。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;所有服务均以高稳定性和低成本作为前提而考虑，适合个人学习和低成本创业使用。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"549"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"程序员"</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20 小时前"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;昨天看到有人在研究技术选型，于是自己也写了一个列表。&lt;/p&gt;</span><span class="se">\n\n</span><span class="s2">&lt;p&gt;以下推荐，除了云服务是一直要收费的外，其他在开发要求中均是免费的服务。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;h2 id=</span><span class="se">\"</span><span class="s2">-</span><span class="se">\"</span><span class="s2">&gt;公司级&lt;/h2&gt;</span><span class="se">\n</span><span class="s2">&lt;h3 id=</span><span class="se">\"</span><span class="s2">-</span><span class="se">\"</span><span class="s2">&gt;技术相关&lt;/h3&gt;</span><span class="se">\n</span><span class="s2">&lt;table&gt;</span><span class="se">\n</span><span class="s2">&lt;thead&gt;&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;th&gt;类型&lt;/th&gt;</span><span class="se">\n</span><span class="s2">&lt;th&gt;选择&lt;/th&gt;</span><span class="se">\n</span><span class="s2">&lt;th&gt;理由&lt;/th&gt;</span><span class="se">\n</span><span class="s2">&lt;/tr&gt;&lt;/thead&gt;</span><span class="se">\n</span><span class="s2">&lt;tbody&gt;</span><span class="se">\n</span><span class="s2">&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;后台语言&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;PHP 7&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;因为其他后端语言我不熟QAQ&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;/tr&gt;</span><span class="se">\n</span><span class="s2">&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;数据库&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;Mysql/Mariadb&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;用法一样&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;/tr&gt;</span><span class="se">\n</span><span class="s2">&lt;tr&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;缓存&lt;/td&gt;</span><span class="se">\n</span><span class="s2">&lt;td&gt;Redis&lt;/td&gt;..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blog.catscarlet.com/201703142751.html"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"昨天看到有人在研究技术选型，于是自己也写了一个列表。</span><span class="se">\r\n\r\n</span><span class="s2">所有服务均以高稳定性和低成本作为前提而考虑，适合个人学习和低成本创业使用。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000002377284"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"利维坦少女"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/catscarlet"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/255/540/2555403060-55d8ba52c6b94_big64"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-id-comments-get">头条评论列表 [/shares/{id}/comments] [GET]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+          </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@行走的程序猿 找到了吗？"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;@行走的程序猿 找到了吗？&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008273661"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lofy"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sf-static.b0.upaiyun.com/global/img/user-40.png"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>评论主体部分的原文，即评论者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的评论主体部分</td>
+</tr>
+<tr>
+<td><strong>replies</strong></td>
+<td>Int</td>
+<td>该评论的回复数</td>
+</tr>
+<tr>
+<td><strong>repliedComments</strong></td>
+<td>Array</td>
+<td>该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
+<h2 id="shares-id-comments-post">评论头条 [/shares/{id}/comments] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>评论的内容，限制长度?</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-id-comments-delete">删除头条评论 [/shares/{id}/comments] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>commentId</strong></td>
+<td>String</td>
+<td>评论的 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-id-likes-post">点赞头条 [/shares/{id}/likes] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-id-likes-delete">取消点赞头条 [/shares/{id}/likes] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="shares-id-favorites-post">收藏头条 [/shares/{id}/favorites] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>favoriteIds</strong></td>
+<td>Array</td>
+<td>存入的收藏夹的 <code class="prettyprint">id</code>，可同时存入多个收藏夹</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
           <h1 id="notes">Notes 笔记</h1>
+
+<p>你可以创建一个 <code class="prettyprint">Note</code> 对象为自己做记录。<code class="prettyprint">Note</code>是个笔记对象，笔记的主要信息都存储在这个对象中，可以通过发起记笔记请求来创建一个新的 <code class="prettyprint">Note</code> 对象，也可以随时查询一个或多个 <code class="prettyprint">Note</code> 对象的信息。每个 <code class="prettyprint">Note</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的笔记对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>shortUrl</strong></td>
+<td>String</td>
+<td>短链接</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>笔记的标题，一句话简洁概括笔记的主要内容</td>
+</tr>
+<tr>
+<td><strong>currentStatus</strong></td>
+<td>String</td>
+<td>笔记当前状态，共有 5 种 (<code class="prettyprint">available</code> 可用的，<code class="prettyprint">pending</code> 审核中，<code class="prettyprint">rejected</code> 被拒绝，<code class="prettyprint">recommend</code> 被推荐的，<code class="prettyprint">deleted</code> 已删除 )</td>
+</tr>
+<tr>
+<td><strong>language</strong></td>
+<td>String</td>
+<td>笔记的记录格式</td>
+</tr>
+<tr>
+<td><strong>createdDate</strong></td>
+<td>String</td>
+<td>根据 <code class="prettyprint">created</code> 解析的时间</td>
+</tr>
+<tr>
+<td><strong>excerpt</strong></td>
+<td>String</td>
+<td>笔记的摘录，将除文字外的特殊片段转为文字描述，如{代码&hellip;}</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>笔记主体部分的原文，即题主提问时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的笔记主体部分</td>
+</tr>
+<tr>
+<td><strong>forks</strong></td>
+<td>Int</td>
+<td>该笔记的 <code class="prettyprint">fork</code> 数</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>Int</td>
+<td>该笔记的点赞数</td>
+</tr>
+<tr>
+<td><strong>comments</strong></td>
+<td>Int</td>
+<td>该笔记的评论数，结果 = 评论笔记数 + 回复评论数</td>
+</tr>
+<tr>
+<td><strong>favorites</strong></td>
+<td>Int</td>
+<td>该笔记的收藏数，即多少名用户收藏了该笔记</td>
+</tr>
+<tr>
+<td><strong>views</strong></td>
+<td>Int</td>
+<td>该笔记的查看次数</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该笔记的用户是否赞同该笔记，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isPrivated</strong></td>
+<td>Bool</td>
+<td>表示该笔记是否为非公开的私有笔记，<code class="prettyprint">true</code> 时仅用户自己可见</td>
+</tr>
+<tr>
+<td><strong>isFollowed</strong></td>
+<td>Bool</td>
+<td>表示查看该笔记的用户是否关注了该笔记，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isFavorited</strong></td>
+<td>Bool</td>
+<td>表示查看该笔记的用户是否收藏了该笔记，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isSelf</strong></td>
+<td>Bool</td>
+<td>是否为当前查看用户自己的笔记，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>isForked</strong></td>
+<td>Bool</td>
+<td>表示当前查看用户是否已 <code class="prettyprint">fork</code> 此笔记</td>
+</tr>
+<tr>
+<td><strong>forkedFrom</strong></td>
+<td>Object</td>
+<td>fork笔记的原笔记对象，若为原创笔记则为空</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>创建该笔记的用户对象</td>
+</tr>
+<tr>
+<td><strong>commentsDetail</strong></td>
+<td>Array</td>
+<td>该笔记下所有回答列表</td>
+</tr>
+</tbody></table>
+
+<h2 id="notes-get">查看笔记列表 [/notes] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330000008703409"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"正则表达式规则"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/n/1330000008703409"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"```</span><span class="se">\n</span><span class="s2">表1.常用的元字符 </span><span class="se">\n</span><span class="s2">代码</span><span class="se">\t</span><span class="s2">说明</span><span class="se">\n</span><span class="s2">.</span><span class="se">\t</span><span class="s2">匹配除换行符以外的任意字符</span><span class="se">\n\\</span><span class="s2">w</span><span class="se">\t</span><span class="s2">匹配字母或数字或下划线或汉字</span><span class="se">\n\\</span><span class="s2">s</span><span class="se">\t</span><span class="s2">匹配任意的空白符"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"markdown"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 分钟前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"forks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isPrivate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/259/155/2591555999-580475c6d6762_big64"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/testoopser"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>问题列表类型，共 1 种，<code class="prettyprint">newest</code>：最新</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-post">记笔记 [/notes] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330000008703409"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"正则表达式规则"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/n/1330000008703409"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sfau.lt/cjKGjJ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"markdown"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isPrivate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isSelf"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isForked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favotites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"forks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"```</span><span class="se">\n</span><span class="s2">表1.常用的元字符 </span><span class="se">\n</span><span class="s2">代码</span><span class="se">\t</span><span class="s2">说明</span><span class="se">\n</span><span class="s2">.</span><span class="se">\t</span><span class="s2">匹配除换行符以外的任意字符</span><span class="se">\n\\</span><span class="s2">w</span><span class="se">\t</span><span class="s2">匹配字母或数字或下划线或汉字</span><span class="se">\n\\</span><span class="s2">s</span><span class="se">\t</span><span class="s2">匹配任意的空白符"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;表1.常用的元字符 </span><span class="se">\n</span><span class="s2">代码    说明</span><span class="se">\n</span><span class="s2">.    匹配除换行符以外的任意字符</span><span class="se">\n\\</span><span class="s2">w    匹配字母或数字或下划线或汉字</span><span class="se">\n\\</span><span class="s2">s    匹配任意的空白符</span><span class="se">\n\\</span><span class="s2">d    匹配数字</span><span class="se">\n\\</span><span class="s2">b    匹配单词的开始或结束</span><span class="se">\n</span><span class="s2">^    匹配字符串的开始</span><span class="se">\n</span><span class="s2">$    匹配字符串的结束</span><span class="se">\n\n</span><span class="s2">表2.常用的限定符</span><span class="se">\n</span><span class="s2">代码/语法    说明</span><span class="se">\n</span><span class="s2">*    重复零次或更多次</span><span class="se">\n</span><span class="s2">+    重复一次或更多次</span><span class="se">\n</span><span class="s2">?    重复零次或一次</span><span class="se">\n</span><span class="s2">{n}    重复n次</span><span class="se">\n</span><span class="s2">{n,}..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000004958804"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/259/155/2591555999-580475c6d6762_big64"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/testoopser"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"forkedNote"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"commentsDetail"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>笔记的标题，一句话概括该笔记的主要内容</td>
+</tr>
+<tr>
+<td><strong>language</strong></td>
+<td>String</td>
+<td>笔记的记录格式，共 12 种 （<code class="prettyprint">text</code>, <code class="prettyprint">markdown</code>, <code class="prettyprint">javascript</code>, <code class="prettyprint">css</code>, <code class="prettyprint">html</code>, <code class="prettyprint">php</code>, <code class="prettyprint">python</code>, <code class="prettyprint">ruby</code>, <code class="prettyprint">go</code>, <code class="prettyprint">c/c++</code>, <code class="prettyprint">java</code>, <code class="prettyprint">shell/bash</code>）</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>笔记的主体部分</td>
+</tr>
+<tr>
+<td><strong>isPrivate</strong></td>
+<td>Bool</td>
+<td>是否公开此笔记</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-put">修改笔记 [/notes] [PUT]</h2>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>noteId</strong></td>
+<td>String</td>
+<td>笔记的唯一 id</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>笔记的标题，一句话概括该笔记的主要内容</td>
+</tr>
+<tr>
+<td><strong>language</strong></td>
+<td>String</td>
+<td>笔记的记录格式，共 12 种 （<code class="prettyprint">text</code>, <code class="prettyprint">markdown</code>, <code class="prettyprint">javascript</code>, <code class="prettyprint">css</code>, <code class="prettyprint">html</code>, <code class="prettyprint">php</code>, <code class="prettyprint">python</code>, <code class="prettyprint">ruby</code>, <code class="prettyprint">go</code>, <code class="prettyprint">c/c++</code>, <code class="prettyprint">java</code>, <code class="prettyprint">shell/bash</code>）</td>
+</tr>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>笔记的主体部分</td>
+</tr>
+<tr>
+<td><strong>isPrivate</strong></td>
+<td>Bool</td>
+<td>是否公开此笔记</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户，并且当前笔记所有者可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-delete">删除笔记 [/notes] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>noteId</strong></td>
+<td>String</td>
+<td>笔记的唯一 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户，并且当前笔记所有者可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-id-get">笔记详情 [/notes/{id}] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330000008703409"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"正则表达式规则"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/n/1330000008703409"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://sfau.lt/cjKGjJ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"markdown"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6 分钟前"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isPrivate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isSelf"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isForked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favotites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"forks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"```</span><span class="se">\n</span><span class="s2">表1.常用的元字符 </span><span class="se">\n</span><span class="s2">代码</span><span class="se">\t</span><span class="s2">说明</span><span class="se">\n</span><span class="s2">.</span><span class="se">\t</span><span class="s2">匹配除换行符以外的任意字符</span><span class="se">\n\\</span><span class="s2">w</span><span class="se">\t</span><span class="s2">匹配字母或数字或下划线或汉字</span><span class="se">\n\\</span><span class="s2">s</span><span class="se">\t</span><span class="s2">匹配任意的空白符"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;pre&gt;&lt;code&gt;表1.常用的元字符 </span><span class="se">\n</span><span class="s2">代码    说明</span><span class="se">\n</span><span class="s2">.    匹配除换行符以外的任意字符</span><span class="se">\n\\</span><span class="s2">w    匹配字母或数字或下划线或汉字</span><span class="se">\n\\</span><span class="s2">s    匹配任意的空白符</span><span class="se">\n\\</span><span class="s2">d    匹配数字</span><span class="se">\n\\</span><span class="s2">b    匹配单词的开始或结束</span><span class="se">\n</span><span class="s2">^    匹配字符串的开始</span><span class="se">\n</span><span class="s2">$    匹配字符串的结束</span><span class="se">\n\n</span><span class="s2">表2.常用的限定符</span><span class="se">\n</span><span class="s2">代码/语法    说明</span><span class="se">\n</span><span class="s2">*    重复零次或更多次</span><span class="se">\n</span><span class="s2">+    重复一次或更多次</span><span class="se">\n</span><span class="s2">?    重复零次或一次</span><span class="se">\n</span><span class="s2">{n}    重复n次</span><span class="se">\n</span><span class="s2">{n,}..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000004958804"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/259/155/2591555999-580475c6d6762_big64"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/testoopser"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"forkedNote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330000008679787"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"正则表达式规则"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/n/1330000008679787"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"littlelightss"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"littlelightss"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/littlelightss"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"commentsDetail"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-id-comments-get">笔记评论列表 [/notes/{id}/comments] [GET]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+          </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@行走的程序猿 找到了吗？"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;@行走的程序猿 找到了吗？&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008273661"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lofy"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sf-static.b0.upaiyun.com/global/img/user-40.png"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>评论主体部分的原文，即评论者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的评论主体部分</td>
+</tr>
+<tr>
+<td><strong>replies</strong></td>
+<td>Int</td>
+<td>该评论的回复数</td>
+</tr>
+<tr>
+<td><strong>repliedComments</strong></td>
+<td>Array</td>
+<td>该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-id-comments-post">评论笔记 [/notes/{id}/comments] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>评论的内容，限制长度?</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-id-comments-delete">删除笔记评论 [/notes/{id}/comments] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>commentId</strong></td>
+<td>String</td>
+<td>评论的 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="fork-notes-id-forks-post">fork笔记 [/notes/{id}/forks] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330000008703409"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/n/1330000008703409"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="notes-id-likes-post">收藏笔记 [/notes/{id}/likes] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFavorited"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>favoriteIds</strong></td>
+<td>Array</td>
+<td>存入的收藏夹的 <code class="prettyprint">id</code>，可同时存入多个收藏夹</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
           <h1 id="activities">Activities 活动</h1>
 
