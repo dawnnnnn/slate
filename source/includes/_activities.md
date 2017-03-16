@@ -124,6 +124,10 @@
 }
 ```
 
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
 ## 报名活动 [/activities/{id}/join] [POST]
 
 ## 活动评论列表 [/activities/{id}/comments] [GET]

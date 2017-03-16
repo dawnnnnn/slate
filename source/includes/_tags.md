@@ -43,9 +43,13 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**type** | String | 搜索的关键字 |
+**type** | String | 获取 `tag` 列表的类型，共种 （`hottest`：热门的，`all`：全部的，`followed`：已关注的） |
 **page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
 **pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 |
+
+<aside class="notice">
+当前为登录用户状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 创建标签 [/tags] [POST]
 
@@ -77,6 +81,10 @@
 **name** | String | 创建的标签名 |
 **desc** | String | 标签的描述 |
 
+<aside class="notice">
+只有登录用户才可以发起请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 ## 修改标签 [/tags] [PUT]
 
 > 返回示例参照标签详情
@@ -86,6 +94,10 @@
 **tagId** | String | 由 SegmentFault 生成的标签对象 ID，16位数字组成的字符串 |
 **name** | String | 创建的标签名 |
 **desc** | String | 标签的描述 |
+
+<aside class="notice">
+只有登录用户才可以发起请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 删除标签 [/tags] [DELETE]
 
@@ -102,6 +114,10 @@
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **tagId** | String | 由 SegmentFault 生成的标签对象 ID，16位数字组成的字符串 |
+
+<aside class="notice">
+只有登录用户才可以发起请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 标签详情 [/tags/{id}] [GET]
 
@@ -125,6 +141,10 @@
   }
 }
 ```
+
+<aside class="notice">
+当前为登录用户状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
 
 ## 标签下的用户排行 [/tags/{id}/ranks] [GET]
 
@@ -184,6 +204,10 @@
   }
 }
 
+<aside class="notice">
+只有登录用户才可以发起请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 ## 取消关注标签 [/tags/{id}/follows] [DELETE]
 
 > 返回示例
@@ -195,3 +219,7 @@
 	"isFollowed": false
   }
 }
+
+<aside class="notice">
+只有登录用户才可以发起请求，必须在 Request Header 中带上 Authorization
+</aside>
