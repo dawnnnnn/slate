@@ -5123,41 +5123,719 @@
 
           <h1 id="favotites">Favotites 收藏</h1>
 
+<p>你可以创建一个 <code class="prettyprint">Favorite</code> 对象用作归档自己对其他资源的集合。<code class="prettyprint">Favorite</code>是个收藏夹对象，可以通过发起创建收藏夹请求来创建一个新的 <code class="prettyprint">Favorite</code> 对象，也可以随时查询其他用户或自己的 <code class="prettyprint">Favorite</code> 对象的信息。每个 <code class="prettyprint">Favorite</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的收藏夹对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>收藏夹的名称，简洁概括</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>收藏夹的描述，可进一步介绍创建该收藏夹的缘由</td>
+</tr>
+<tr>
+<td><strong>entriesCount</strong></td>
+<td>Int</td>
+<td>收藏夹条目数量</td>
+</tr>
+<tr>
+<td><strong>followers</strong></td>
+<td>Int</td>
+<td>收藏夹的关注者数量</td>
+</tr>
+<tr>
+<td><strong>isFollowed</strong></td>
+<td>Bool</td>
+<td>是否关注这个收藏夹</td>
+</tr>
+<tr>
+<td><strong>isPrivated</strong></td>
+<td>Bool</td>
+<td>是否为私有的收藏夹，即仅对自己可见</td>
+</tr>
+<tr>
+<td><strong>isAuthor</strong></td>
+<td>Bool</td>
+<td>作者是否为自己</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>创建收藏夹的用户</td>
+</tr>
+<tr>
+<td><strong>entries</strong></td>
+<td>Array</td>
+<td>收藏夹夹下的所有条目</td>
+</tr>
+</tbody></table>
+
 <h2 id="favorites-post">创建收藏夹 [/favorites] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1230000007550478"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/favorite/1230000007550478"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asdad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dasda"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entriesCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isPrivate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isAuthor"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000004958804"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/259/155/2591555999-580475c6d6762_huge128"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/testoopser"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>创建收藏夹时填写的收藏夹名称，限制长度</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>创建收藏夹时填写的收藏夹描述</td>
+</tr>
+<tr>
+<td><strong>isPrivate</strong></td>
+<td>Bool</td>
+<td>是否设置为仅自己可见的收藏夹</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 <h2 id="favorites-put">更新收藏夹 [/favorites] [PUT]</h2>
 
+<blockquote>
+<p>示例参照创建收藏夹</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>favoriteId</strong></td>
+<td>由 SegmentFault 生成的收藏夹对象 ID，16位数字组成的字符串</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>创建收藏夹时填写的收藏夹名称，限制长度</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>创建收藏夹时填写的收藏夹描述</td>
+</tr>
+<tr>
+<td><strong>isPrivate</strong></td>
+<td>Bool</td>
+<td>是否设置为仅自己可见的收藏夹</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户且为收藏夹的创建者可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 <h2 id="favorites-delete">删除收藏夹 [/favorites] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>favoriteId</strong></td>
+<td>由 SegmentFault 生成的收藏夹对象 ID，16位数字组成的字符串</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户且为收藏夹的创建者可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 <h2 id="favorites-id-get">收藏夹信息 [/favorites/{id}] [GET]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1230000007550478"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/favorite/1230000007550478"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asdad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dasda"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entriesCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isPrivate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isAuthor"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000004958804"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testoopser"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/259/155/2591555999-580475c6d6762_huge128"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/testoopser"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"entries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1210000008652727"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/p/1210000008652727"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"代码神注释，让我们认真对待一次"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"favorites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008431166"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"清蒸不是水煮"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/375/587/3755876833-58ad20efd15b6_big64"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/e_vae_va_z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190000004976815"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/a/1190000004976815"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[译] LLDB 基础"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016年04月20日"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"原文链接：https://swifting.io/blog/2016/02/19/6-basic-lld..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bookmarks"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"blog"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wamaker @ segmentfault"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/blog/wamaker"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000004606368"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WAMake"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"316"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/171/025/1710252095-5885766df1ab1_small"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wamaker"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iOS"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089442"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/iOS"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lldb"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000619566"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/lldb"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">entries</code> 返回的内容为各种类型的集合，现对 <code class="prettyprint">entries</code> 列表内对象作如下说明</p>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>收藏条目的类型，共 5 种 (<code class="prettyprint">article</code>：文章， <code class="prettyprint">question</code>：问题，<code class="prettyprint">url</code>：链接头条，<code class="prettyprint">note</code>：笔记，<code class="prettyprint">text</code>：文本头条 )</td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>收藏夹内条目的 id</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>收藏夹内条目的 url</td>
+</tr>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td>收藏夹内条目的 标题</td>
+</tr>
+<tr>
+<td><strong>createdDate</strong></td>
+<td>String</td>
+<td>收藏夹内条目的 创建日期</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>Int</td>
+<td>收藏夹内条目的 被赞数目</td>
+</tr>
+<tr>
+<td><strong>favorites</strong></td>
+<td>Int</td>
+<td>收藏夹内条目的 被收藏数目</td>
+</tr>
+<tr>
+<td><strong>comments</strong></td>
+<td>Int</td>
+<td>收藏夹内条目的 评论数目</td>
+</tr>
+<tr>
+<td><strong>answers</strong></td>
+<td>Int</td>
+<td>type 为 <code class="prettyprint">question</code> 问题对象时，表示答案数目</td>
+</tr>
+<tr>
+<td><strong>isAccepted</strong></td>
+<td>Bool</td>
+<td>type 为 <code class="prettyprint">question</code> 问题对象时, 表示是否已采纳答案，其余返回为 <code class="prettyprint">false</code></td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>收藏夹内条目的创建者 用户对象</td>
+</tr>
+<tr>
+<td><strong>blog</strong></td>
+<td>Object</td>
+<td>type 为 <code class="prettyprint">article</code>文章对象时，文章所属的专栏对象，type不为<code class="prettyprint">article</code>时，返回空</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>条目所属的标签, 由一个或多个组成，type 为 <code class="prettyprint">url</code> 或 <code class="prettyprint">text</code> 时返回空</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
 <h2 id="favorites-id-follows-post">关注收藏夹 [/favorites/{id}/follows] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
 <h2 id="favorites-id-follows-delete">取消关注收藏夹 [/favorites/{id}/follows] [DELETE]</h2>
 
+<blockquote>
+<p>返回示例 </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
           <h1 id="tags">Tags 标签</h1>
+
+<p><code class="prettyprint">Tag</code>是个标签对象，所有标签的主要信息都存储在这个对象中，可以通过发起创建标签请求来创建一个新的 <code class="prettyprint">Tag</code> 对象，也可以随时查询一个或多个 <code class="prettyprint">Tag</code> 对象的信息。每个 <code class="prettyprint">Tag</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>String</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>标签的名称</td>
+</tr>
+<tr>
+<td><strong>shortUrl</strong></td>
+<td>String</td>
+<td>标签的短链接</td>
+</tr>
+<tr>
+<td><strong>excerpt</strong></td>
+<td>String</td>
+<td>标签的摘要</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>标签的描述解析</td>
+</tr>
+<tr>
+<td><strong>orginalText</strong></td>
+<td>String</td>
+<td>标签的描述原文</td>
+</tr>
+<tr>
+<td><strong>thumbnailUrl</strong></td>
+<td>String</td>
+<td>标签的默认图片 url</td>
+</tr>
+<tr>
+<td><strong>followers</strong></td>
+<td>Int</td>
+<td>标签的关注者数量</td>
+</tr>
+<tr>
+<td><strong>isFollowed</strong></td>
+<td>Bool</td>
+<td>查看该标签的用户，是否已关注此标签</td>
+</tr>
+</tbody></table>
 
 <h2 id="tags-get">标签列表 [/tags] [GET]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089436"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/javascript"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascript"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089423"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/python"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>搜索的关键字</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
 <h2 id="tags-post">创建标签 [/tags] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089436"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/javascript"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascript"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;p&gt;JavaScript 是一门弱类型的动态脚本语言，支持多种编程范式，包括面向对象和函数式编程，被广泛用于 web 开发。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;一般来说，完整的JavaScript包括以下几个部分：&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;ul&gt;</span><span class="se">\n</span><span class="s2">&lt;li&gt;&lt;p&gt;ECMAScript，描述了该语言的语法和基本对象&lt;/p&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&lt;li&gt;&lt;p&gt;文档对象模型（DOM），描述处理网页内容的方法和接口&lt;/p&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&lt;li&gt;&lt;p&gt;..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"JavaScript 是一门弱类型的动态脚本语言，支持多种编程范式，包括面向对象和函数式编程，被广泛用于 web 开发。</span><span class="se">\n\n</span><span class="s2">一般来说，完整的JavaScript包括以下几个部分：</span><span class="se">\n</span><span class="s2">- ECMAScript，描述了该语言的语法和基本对象</span><span class="se">\n</span><span class="s2">- 文档对象模型（DOM），描述处理网页内容的方法和接口</span><span class="se">\n</span><span class="s2">- ..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"JavaScript 是一门弱类型的动态脚本语言，支持多种编程范式，包括面向对象和函数式编程，被广泛用于 web 开发。 一般来说，完整的JavaScript包括以下几个部分： ECMAScript，描述了该语言的语法和基本对象 文档对..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/195/823/1958237468-1040000000089436_small"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>创建的标签名</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>标签的描述</td>
+</tr>
+</tbody></table>
 
 <h2 id="tags-put">修改标签 [/tags] [PUT]</h2>
 
+<blockquote>
+<p>返回示例参照标签详情</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>tagId</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的标签对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>创建的标签名</td>
+</tr>
+<tr>
+<td><strong>desc</strong></td>
+<td>String</td>
+<td>标签的描述</td>
+</tr>
+</tbody></table>
+
 <h2 id="tags-delete">删除标签 [/tags] [DELETE]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>tagId</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的标签对象 ID，16位数字组成的字符串</td>
+</tr>
+</tbody></table>
+
 <h2 id="tags-id-get">标签详情 [/tags/{id}] [GET]</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000089436"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/javascript"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"javascript"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;p&gt;JavaScript 是一门弱类型的动态脚本语言，支持多种编程范式，包括面向对象和函数式编程，被广泛用于 web 开发。&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;p&gt;一般来说，完整的JavaScript包括以下几个部分：&lt;/p&gt;</span><span class="se">\n</span><span class="s2">&lt;ul&gt;</span><span class="se">\n</span><span class="s2">&lt;li&gt;&lt;p&gt;ECMAScript，描述了该语言的语法和基本对象&lt;/p&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&lt;li&gt;&lt;p&gt;文档对象模型（DOM），描述处理网页内容的方法和接口&lt;/p&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&lt;li&gt;&lt;p&gt;..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"JavaScript 是一门弱类型的动态脚本语言，支持多种编程范式，包括面向对象和函数式编程，被广泛用于 web 开发。</span><span class="se">\n\n</span><span class="s2">一般来说，完整的JavaScript包括以下几个部分：</span><span class="se">\n</span><span class="s2">- ECMAScript，描述了该语言的语法和基本对象</span><span class="se">\n</span><span class="s2">- 文档对象模型（DOM），描述处理网页内容的方法和接口</span><span class="se">\n</span><span class="s2">- ..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"JavaScript 是一门弱类型的动态脚本语言，支持多种编程范式，包括面向对象和函数式编程，被广泛用于 web 开发。 一般来说，完整的JavaScript包括以下几个部分： ECMAScript，描述了该语言的语法和基本对象 文档对..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18263"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isFollowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thumbnailUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/195/823/1958237468-1040000000089436_small"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="tags-id-ranks-get">标签下的用户排行 [/tags/{id}/ranks] [GET]</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000000747771"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/hampotato"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"戴仓薯"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/365/043/365043127-54a91b4394c06_small"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"increase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4554"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hampotato"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000000093502"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/openfibers"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OpenFibers"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/384/738/3847382589-1030000000093502_small"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"increase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2201"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openfibers"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>increase</strong></td>
+<td>Int</td>
+<td>用户在该标签下所获得的声望值</td>
+</tr>
+</tbody></table>
 
 <h2 id="tags-search-get">标签搜索 [/tags/search] [GET]</h2>
 
-<h2 id="tags-id-articles-get">标签下文章列表 [/tags/{id}/articles] [GET]</h2>
+<blockquote>
+<p>返回示例参照标签列表</p>
+</blockquote>
 
-<h2 id="tags-id-questions-get">标签下问题列表 [/tags/{id}/questions] [GET]</h2>
+<p>根据提供的关键词，搜索标题或内容中带有该关键词的标签，返回一个 <code class="prettyprint">Tag</code> 对象的列表。</p>
 
-<h2 id="tags-id-ranks-get">标签下排行列表 [/tags/{id}/ranks] [GET]</h2>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>q</strong></td>
+<td>String</td>
+<td>搜索的关键字</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
 
 <h2 id="tags-id-follows-post">关注标签 [/tags/{id}/follows] [POST]</h2>
 
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+
+<p>{
+  &ldquo;status&rdquo;: 0,
+  &ldquo;message&rdquo;: &ldquo;&rdquo;,
+  &ldquo;data&rdquo;: {
+    &ldquo;isFollowed&rdquo;: true
+  }
+}</p>
+
 <h2 id="tags-id-follows-delete">取消关注标签 [/tags/{id}/follows] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+
+<p>{
+  &ldquo;status&rdquo;: 0,
+  &ldquo;message&rdquo;: &ldquo;&rdquo;,
+  &ldquo;data&rdquo;: {
+    &ldquo;isFollowed&rdquo;: false
+  }
+}</p>
 
           <h1 id="user">User 用户</h1>
 
