@@ -200,7 +200,9 @@
 {
   "status": 0,
   "message": "",
-  "data": ""
+  "data": {
+	"isFollowed": true
+  }
 }
 ```
 
@@ -216,7 +218,9 @@
 {
   "status": 0,
   "message": "",
-  "data": ""
+  "data": {
+	"isFollowed": false
+  }
 }
 ```
 
