@@ -495,7 +495,7 @@
 <tr>
 <td><strong>type</strong></td>
 <td>String</td>
-<td>问题列表类型，共4种，<code class="prettyprint">hottest</code>：最热，<code class="prettyprint">newest</code>：最新，<code class="prettyprint">unanswered</code>：未回答的，<code class="prettyprint">tag</code>：标签</td>
+<td>问题列表类型，共 4 种，<code class="prettyprint">hottest</code>：最热，<code class="prettyprint">newest</code>：最新，<code class="prettyprint">unanswered</code>：未回答的，<code class="prettyprint">tag</code>：标签</td>
 </tr>
 <tr>
 <td><strong>tag</strong> <em>optional</em></td>
@@ -4397,17 +4397,861 @@
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
+<h2 id="notes-id-report-post">举报笔记 [/notes/{id}/report] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"感谢您为社区做出的贡献！"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>reason</strong></td>
+<td>String</td>
+<td>举报问题的原因，共 4 种 （<code class="prettyprint">垃圾信息</code>, <code class="prettyprint">违规内容</code>, <code class="prettyprint">不友善内容</code>, <code class="prettyprint">内容质量差</code>）</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
           <h1 id="activities">Activities 活动</h1>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的活动对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>Sring</td>
+<td>SegmentFault 指定路由，与主站对应的 path</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>String</td>
+<td>活动的名称</td>
+</tr>
+<tr>
+<td><strong>slug</strong></td>
+<td>String</td>
+<td>活动标识符</td>
+</tr>
+<tr>
+<td><strong>city</strong></td>
+<td>String</td>
+<td>活动举办城市</td>
+</tr>
+<tr>
+<td><strong>startDate</strong></td>
+<td>String</td>
+<td>活动起始日期</td>
+</tr>
+<tr>
+<td><strong>endDate</strong></td>
+<td>String</td>
+<td>活动截止日期</td>
+</tr>
+<tr>
+<td><strong>signStartDate</strong></td>
+<td>String</td>
+<td>活动报名起始日期</td>
+</tr>
+<tr>
+<td><strong>signEndDate</strong></td>
+<td>String</td>
+<td>活动报名截止日期</td>
+</tr>
+<tr>
+<td><strong>bannerUrl</strong></td>
+<td>String</td>
+<td>banner的 url</td>
+</tr>
+<tr>
+<td><strong>address</strong></td>
+<td>String</td>
+<td>活动举办地址</td>
+</tr>
+<tr>
+<td><strong>excerpt</strong></td>
+<td>String</td>
+<td>纯文本格式的活动简介</td>
+</tr>
+<tr>
+<td><strong>signUrl</strong></td>
+<td>String</td>
+<td>原报名链接</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的活动正文</td>
+</tr>
+<tr>
+<td><strong>signs</strong></td>
+<td>Int</td>
+<td>已报名人数</td>
+</tr>
+<tr>
+<td><strong>isJoin</strong></td>
+<td>Bool</td>
+<td>表示用户是否报名此活动</td>
+</tr>
+<tr>
+<td><strong>isSignEnd</strong></td>
+<td>Bool</td>
+<td>是否报名结束</td>
+</tr>
+<tr>
+<td><strong>isEnd</strong></td>
+<td>Bool</td>
+<td>活动是否结束</td>
+</tr>
+<tr>
+<td><strong>isThirdPartyJoin</strong></td>
+<td>Bool</td>
+<td>是否来自三方</td>
+</tr>
+<tr>
+<td><strong>tags</strong></td>
+<td>Array</td>
+<td>活动举办的标签，由一个或多个标签组成</td>
+</tr>
+<tr>
+<td><strong>joinedUsers</strong></td>
+<td>Array</td>
+<td>已报名的用户</td>
+</tr>
+<tr>
+<td><strong>sponsors</strong></td>
+<td>Array</td>
+<td>赞助商列表，活动将由一个或多个单位赞助</td>
+</tr>
+<tr>
+<td><strong>hosts</strong></td>
+<td>Array</td>
+<td>举办方列表，活动将由一个或多个单位举办发起</td>
+</tr>
+</tbody></table>
+
+<h2 id="activities-get">活动列表 [/activities] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1160000008640894"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/e/1160000008640894"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"移动互联数据创新"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yidong115504"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"深圳"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"sponsors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"个推"</span><span class="p">,</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"bannerUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-activity.b0.upaiyun.com/394/778/3947783015-58c216131d63f_big"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-26 09:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-26 18:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"活动简介： 移动互联网推动着场景的裂变，消费的升级以及数据的变革。全球的资源正在被全面打通，未来的价值颠覆我们想象。2017，创新之都，岭南际会。这场由大数据推送技术服务商“个推”主办的千人大会将对话众多..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"categoryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"线下活动"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"数据"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/%E6%95%B0%E6%8D%AE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000441863"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"iconUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>根据指定 <code class="prettyprint">type</code> 返回一个 <code class="prettyprint">Activity</code> 对象的列表。列表总是按照创建时间进行排序，总是将最近的 <code class="prettyprint">Activity</code> 对象显示在最前面。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>问题列表类型，共 2 种，<code class="prettyprint">recommend</code>：推荐，<code class="prettyprint">all</code>：全部</td>
+</tr>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<h2 id="activities-id-get">活动详情 [/activities/{id}] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1160000008640894"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/e/1160000008640894"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"移动互联数据创新"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yidong115504"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"深圳"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sponsors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"个推"</span><span class="p">,</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"signs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"大中华喜来登酒店六楼"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bannerUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-activity.b0.upaiyun.com/394/778/3947783015-58c216131d63f_medium"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isSignEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="s2">"isEnd"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isJoined"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-26 09:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-26 18:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01 08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-26 09:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"活动简介： 移动互联网推动着场景的裂变，消费的升级以及数据的变革。全球的资源正在被全面打通，未来的价值颠覆我们想象。2017，创新之都，岭南际会。这场由大数据推送技术服务商“个推”主办的千人大会将对话众多..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">&lt;h2&gt;活动简介：&lt;/h2&gt;..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"joinedUsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"isThirdPartyJoin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.getui.com/cn/2017summit.html"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"数据"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/t/%E6%95%B0%E6%8D%AE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1040000000441863"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"iconUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="activities-id-join-post">报名活动 [/activities/{id}/join] [POST]</h2>
+
+<h2 id="activities-id-comments-get">活动评论列表 [/activities/{id}/comments] [GET]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+          </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+          </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@行走的程序猿 找到了吗？"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;@行走的程序猿 找到了吗？&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008273661"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luofangyong"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lofy"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sf-static.b0.upaiyun.com/global/img/user-40.png"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="err">...</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>返回说明</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>评论主体部分的原文，即评论者回答时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的评论主体部分</td>
+</tr>
+<tr>
+<td><strong>replies</strong></td>
+<td>Int</td>
+<td>该评论的回复数</td>
+</tr>
+<tr>
+<td><strong>repliedComments</strong></td>
+<td>Array</td>
+<td>该评论的回复列表，最多返回 3 项，如有超过 3 项回复，需另外发起请求</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看该评论的用户是否为该评论点赞，未登录查看默认状态为 <code class="prettyprint">false</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization。
+</aside>
+
+<h2 id="activities-id-comments-post">评论活动 [/activities/{id}/comments] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"刚刚"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>发起创建 <code class="prettyprint">Comment</code> 对象的请求，需要对用户验证是否为登录状态。</p>
+
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>评论的内容，限制长度?</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="activities-id-comments-delete">删除评论 [/activities/{id}/comments] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>commentId</strong></td>
+<td>String</td>
+<td>评论的 id</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+          <h1 id="comments">Comments 评论</h1>
+
+<p>你可以创建一个 <code class="prettyprint">Comment</code> 对象对 <code class="prettyprint">文章</code> / <code class="prettyprint">问题</code> / <code class="prettyprint">答案</code> / <code class="prettyprint">笔记</code> / <code class="prettyprint">头条</code> / <code class="prettyprint">活动</code> 进行评论，也可以对 <code class="prettyprint">Comment</code>评论 进行回复。每个 <code class="prettyprint">Comment</code> 对象都拥有一个标识 <code class="prettyprint">id</code>，该 <code class="prettyprint">id</code> 在系统内唯一。</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>id</strong></td>
+<td>String</td>
+<td>由 SegmentFault 生成的问题对象 ID，16位数字组成的字符串</td>
+</tr>
+<tr>
+<td><strong>createdDate</strong></td>
+<td>String</td>
+<td>根据 <code class="prettyprint">created</code> 解析的时间</td>
+</tr>
+<tr>
+<td><strong>originalText</strong></td>
+<td>String</td>
+<td>问题主体部分的原文，即题主提问时撰写的原文</td>
+</tr>
+<tr>
+<td><strong>parsedText</strong></td>
+<td>String</td>
+<td>解析为 HTML 后的问题主体部分</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>Int</td>
+<td>该问题的认可数</td>
+</tr>
+<tr>
+<td><strong>replies</strong></td>
+<td>Int</td>
+<td>该评论的回复数</td>
+</tr>
+<tr>
+<td><strong>isLiked</strong></td>
+<td>Bool</td>
+<td>表示查看此评论的用户是否为此评论点赞</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>Object</td>
+<td>创建该问题的用户对象</td>
+</tr>
+<tr>
+<td><strong>repliedComments</strong></td>
+<td>Array</td>
+<td>该评论的当前回复数</td>
+</tr>
+</tbody></table>
+
+<h2 id="comments-id-get">评论详情 [/comments/{id}] [GET]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1050000008644845</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w">
+      </span><span class="s2">"我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> 
+      </span><span class="s2">"&lt;p&gt;我现在找前端开发工作，到处碰壁，经验不够，人家根本不要，看了你的信息，我更有自信，谢谢你的文章。&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000007653230"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wei_hq"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"行走的程序猿"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/307/754/3077547314-58b0dd1c62747_medium40"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"repliedComments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008655655"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 天前"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@行走的程序猿 找到了吗？"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;@行走的程序猿 找到了吗？&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000008273661"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/luofangyong"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luofangyong"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lofy"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sf-static.b0.upaiyun.com/global/img/user-40.png"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+当前登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="comments-id-likes-post">评论点赞 [/comments/{id}/likes] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="comments-id-likes-delete">取消评论点赞 [/comments/{id}/likes] [DELETE]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="comments-id-replies-get">子评论列表 [/comments/{id}/replies] [GET]</h2>
+
+<blockquote>
+<p>返回示例 </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008422052"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@oopser </span><span class="se">\U</span><span class="s2">6765</span><span class="se">\U</span><span class="s2">554a</span><span class="se">\U</span><span class="s2">9020</span><span class="se">\U</span><span class="s2">4f5c</span><span class="se">\U</span><span class="s2">554a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">/u/oopser</span><span class="se">\"</span><span class="s2">&gt;@oopser&lt;/a&gt; </span><span class="se">\U</span><span class="s2">6765</span><span class="se">\U</span><span class="s2">554a</span><span class="se">\U</span><span class="s2">9020</span><span class="se">\U</span><span class="s2">4f5c</span><span class="se">\U</span><span class="s2">554a&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005636610"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crisitina"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"avartaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/339/576/3395766462-58058db405e0e_medium40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/_natie_"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>page</strong></td>
+<td>Int</td>
+<td>列表当前页面的标识，按 <code class="prettyprint">pageSize</code> 将列表划分成多页，最小为1</td>
+</tr>
+<tr>
+<td><strong>pageSize</strong> <em>optional</em></td>
+<td>Int</td>
+<td>限制有多少对象可以被返回，默认 20 项</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当前为登录状态的用户，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="comments-id-replies-post">回复评论 [/comments/{id}/replies] [POST]</h2>
+
+<blockquote>
+<p>返回示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1050000008422052"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isLiked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"originalText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@oopser </span><span class="se">\U</span><span class="s2">6765</span><span class="se">\U</span><span class="s2">554a</span><span class="se">\U</span><span class="s2">9020</span><span class="se">\U</span><span class="s2">4f5c</span><span class="se">\U</span><span class="s2">554a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"parsedText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;&lt;a href=</span><span class="se">\"</span><span class="s2">/u/oopser</span><span class="se">\"</span><span class="s2">&gt;@oopser&lt;/a&gt; </span><span class="se">\U</span><span class="s2">6765</span><span class="se">\U</span><span class="s2">554a</span><span class="se">\U</span><span class="s2">9020</span><span class="se">\U</span><span class="s2">4f5c</span><span class="se">\U</span><span class="s2">554a&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 天前"</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1030000005636610"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crisitina"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avartaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sfault-avatar.b0.upaiyun.com/339/576/3395766462-58058db405e0e_medium40"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/u/_natie_"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong></td>
+<td>String</td>
+<td>回复评论的内容</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
+<h2 id="comments-id-report-post">举报评论 [/comments/{id}/report] [POST]</h2>
+
+<blockquote>
+<p>Response示例</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"感谢您为社区做出的贡献！"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>请求参数</th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>reason</strong></td>
+<td>String</td>
+<td>举报问题的原因，共 4 种 （<code class="prettyprint">垃圾信息</code>, <code class="prettyprint">违规内容</code>, <code class="prettyprint">不友善内容</code>, <code class="prettyprint">内容质量差</code>）</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
 
           <h1 id="favotites">Favotites 收藏</h1>
 
+<h2 id="favorites-post">创建收藏夹 [/favorites] [POST]</h2>
+
+<h2 id="favorites-put">更新收藏夹 [/favorites] [PUT]</h2>
+
+<h2 id="favorites-delete">删除收藏夹 [/favorites] [DELETE]</h2>
+
+<h2 id="favorites-id-get">收藏夹信息 [/favorites/{id}] [GET]</h2>
+
+<h2 id="favorites-id-follows-post">关注收藏夹 [/favorites/{id}/follows] [POST]</h2>
+
+<h2 id="favorites-id-follows-delete">取消关注收藏夹 [/favorites/{id}/follows] [DELETE]</h2>
+
           <h1 id="tags">Tags 标签</h1>
+
+<h2 id="tags-get">标签列表 [/tags] [GET]</h2>
+
+<h2 id="tags-post">创建标签 [/tags] [POST]</h2>
+
+<h2 id="tags-put">修改标签 [/tags] [PUT]</h2>
+
+<h2 id="tags-delete">删除标签 [/tags] [DELETE]</h2>
+
+<h2 id="tags-id-get">标签详情 [/tags/{id}] [GET]</h2>
+
+<h2 id="tags-search-get">标签搜索 [/tags/search] [GET]</h2>
+
+<h2 id="tags-id-articles-get">标签下文章列表 [/tags/{id}/articles] [GET]</h2>
+
+<h2 id="tags-id-questions-get">标签下问题列表 [/tags/{id}/questions] [GET]</h2>
+
+<h2 id="tags-id-ranks-get">标签下排行列表 [/tags/{id}/ranks] [GET]</h2>
+
+<h2 id="tags-id-follows-post">关注标签 [/tags/{id}/follows] [POST]</h2>
+
+<h2 id="tags-id-follows-delete">取消关注标签 [/tags/{id}/follows] [DELETE]</h2>
 
           <h1 id="user">User 用户</h1>
 
-          <h1 id="settings">Settings 设置</h1>
+<h2 id="user-register-post">注册 [/user/register] [POST]</h2>
+
+<h2 id="user-phone-code-post">获取验证码 [/user/phone/code] [POST]</h2>
+
+<h2 id="user-login-post">登录 [/user/login] [POST]</h2>
+
+<h2 id="user-logout-get">退出登录 [/user/logout] [GET]</h2>
+
+<h2 id="user-slug-get">个人信息 [/user/{slug}] [GET]</h2>
+
+<h2 id="user-slug-put">修改个人信息 [/user/{slug}] [PUT]</h2>
+
+<h2 id="user-slug-questions-get">获取用户的提问列表 [/user/{slug}/questions] [GET]</h2>
+
+<h2 id="user-slug-answers-get">获取用户的回答列表 [/user/{slug}/answers] [GET]</h2>
+
+<h2 id="user-slug-blogs-get">获取用户的专栏列表 [/user/{slug}/blogs] [GET]</h2>
+
+<h2 id="user-slug-articles-get">获取用户的文章列表 [/user/{slug}/articles] [GET]</h2>
+
+<h2 id="user-slug-shares-get">获取用户的分享列表 [/user/{slug}/shares] [GET]</h2>
+
+<h2 id="user-slug-timeline-get">获取用户的最新动态 [/user/{slug}/timeline] [GET]</h2>
+
+<h2 id="user-slug-notes-get">获取用户的笔记列表 [/user/{slug}/notes] [GET]</h2>
+
+<h2 id="user-slug-favorites-get">获取用户的收藏夹列表 [/user/{slug}/favorites] [GET]</h2>
+
+<h2 id="user-slug-followings-get">获取用户的关注列表 [/user/{slug}/followings] [GET]</h2>
+
+<h2 id="user-slug-follows-post">关注用户 [/user/{slug}/follows] [POST]</h2>
+
+<h2 id="user-slug-follows-delete">取消关注用户 [/user/{slug}/follows] [DELETE]</h2>
+
+<h2 id="user-schools-post">添加教育经历 [/user/schools] [POST]</h2>
+
+<h2 id="user-schools-put">修改教育经历 [/user/schools] [PUT]</h2>
+
+<h2 id="user-schools-delete">删除教育经历 [/user/schools] [DELETE]</h2>
+
+<h2 id="user-companies-post">添加工作经历 [/user/companies] [POST]</h2>
+
+<h2 id="user-companies-get">修改工作经历 [/user/companies] [GET]</h2>
+
+<h2 id="user-companies-delete">删除工作经历 [/user/companies] [DELETE]</h2>
+
+<h2 id="user-projects-post">添加项目经验 [/user/projects] [POST]</h2>
+
+<h2 id="user-projects-put">修改项目经验 [/user/projects] [PUT]</h2>
+
+<h2 id="user-projects-delete">删除项目经验 [/user/projects] [DELETE]</h2>
+
+<h2 id="user-avatars-post">上传头像 [/user/avatars] [POST]</h2>
+
+<h2 id="user-skills-post">修改擅长技能 [/user/skills] [POST]</h2>
+
+<h2 id="user-messages-get">获取用户的私信列表 [/user/messages] [GET]</h2>
+
+<h2 id="user-events-get">获取用户的消息事件列表 [/user/events] [GET]</h2>
+
+<h2 id="user-password-post">更改用户密码 [/user/password] [POST]</h2>
+
+<h2 id="user-mail-reset-post">修改用户邮箱 [/user/mail/reset] [POST]</h2>
+
+<h2 id="user-mail-verify-post">验证原邮箱 [/user/mail/verify] [POST]</h2>
+
+<h2 id="user-read-get">用户的小红点 [/user/read] [GET]</h2>
+
+<h2 id="user-read-post">小红点已读 [/user/read] [POST]</h2>
 
           <h1 id="assist">Assist 辅助接口</h1>
+
+<h2 id="search-get">全局搜索 [/search] [GET]</h2>
+
+<h2 id="schools-search-get">搜索学校 [schools/search] [GET]</h2>
+
+<h2 id="feed-feeds-get">Feed [/feeds] [GET]</h2>
+
+<h2 id="ranks-get">排行 [/ranks] [GET]</h2>
+
+<h2 id="settings-notifications-post">通知 [/settings/notifications] [POST]</h2>
+
+<h2 id="settings-oauths-get">三方绑定列表 [/settings/oauths] [GET]</h2>
+
+<h2 id="settings-oauths-post">绑定第三方 [/settings/oauths] [POST]</h2>
+
+<h2 id="settings-oauths-show-get">三方显示列表 [/settings/oauths/show] [GET]</h2>
+
+<h2 id="messages-id-get">私信聊天记录 [/messages/{id}] [GET]</h2>
+
+<h2 id="message-id-post">发送私信 [/message/{id}] [POST]</h2>
 
       </div>
       <div class="dark-box">
