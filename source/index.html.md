@@ -21,10 +21,10 @@ includes:
   - shares
   - notes
   - activities
+  - comments
   - favorites
   - tags
   - user
-  - settings
   - assist
 
 

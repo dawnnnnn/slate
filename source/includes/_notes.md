@@ -389,4 +389,24 @@
 只有登录用户可以请求，必须在 Request Header 中带上 Authorization
 </aside>
 
+## 举报笔记 [/notes/{id}/report] [POST]
+
+> Response示例
+
+``` json
+{
+  "status": 0,
+  "message": "感谢您为社区做出的贡献！",
+  "data": ""
+}
+```
+
+请求参数 | | |
+-------------- | -------------- | -------------- |
+**reason** | String | 举报问题的原因，共 4 种 （`垃圾信息`, `违规内容`, `不友善内容`, `内容质量差`） |
+
+<aside class="notice">
+只有登录用户可以请求，必须在 Request Header 中带上 Authorization
+</aside>
+
 

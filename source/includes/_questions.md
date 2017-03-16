@@ -80,7 +80,7 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**type** | String | 问题列表类型，共4种，`hottest`：最热，`newest`：最新，`unanswered`：未回答的，`tag`：标签 |
+**type** | String | 问题列表类型，共 4 种，`hottest`：最热，`newest`：最新，`unanswered`：未回答的，`tag`：标签 |
 **tag** _optional_| String | type 为 `tag` 时必传，填写 tag 的 slug 或者 id |
 **page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
 **pageSize** _optional_ | Int | 限制有多少对象可以被返回，默认 20 项 | 
