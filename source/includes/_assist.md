@@ -2,6 +2,72 @@
 
 ## 全局搜索 [/search] [GET]
 
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+	"rows": [
+	  {	// tag 标签
+		"id": "1040000000089449",
+		"type": "tag"
+		"name": "java",
+		"url": "/t/java",
+	  },
+	  {	// user 用户
+		"id": "1030000000256474",
+		"type": "user",
+		"name": "java开发者_王江云",
+		"url": "/u/javakaifazhe_wangjiangyun",
+		"slug": "javakaifazhe_wangjiangyun",
+		"ranks": "0",
+		"avatarUrl": "https://sfault-avatar.b0.upaiyun.com/113/081/1130812317-1030000000256474_medium40",
+		"followers": "1"
+	  },
+	  {	// question 问题
+    	"id": "1010000007710496",
+    	"type": "question",
+    	"title": "java -v报错 java -version正确",
+    	"url": "/q/1010000007710496",
+    	"excerpt": 
+    	  "如题：maven打包上传项目时报错mvn deployError occurred during initialization of VMjava/lang/NoClassDefFoundError: java/lang/Object因为之前卸载过jdk，所以看看是不是jdk问题输入java -version正确打印版...",
+    	"isAccepted": true,
+    	"answers": "4",
+    	"followers": 4,
+    	"favorites": 0,
+	    "tags": [
+		  {
+			"id": "1040000000090186",
+            "name": "maven",
+            "url": "/t/maven"
+	      },
+	      {
+            "id": "1040000000089449",
+            "name": "java",
+            "url": "/t/java"
+	      }
+    	],
+	  },
+	  {	// article 文章
+		"id": "1190000007984513",
+		"type": "article",
+		"title": "Java知识点总结",
+		"url": "/a/1190000007984513",
+		"excerpt": "1、Java多线程参考博文:Java多线程学习",
+		"likes": "0",
+		"favorites": 4,
+	    "user": {
+	        "id": "1030000007698012",
+	        "name": "garyli",
+	        "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/841/558/841558629-584510c266884_medium40",
+	        "url": "/u/garyli"
+	    }
+	  }
+	]
+  }
+}
+```
+
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **q** | String | 用户的搜索关键字 |
