@@ -482,6 +482,49 @@
 
 ## 获取用户的最新动态 [/user/{slug}/timeline] [GET]
 
+> 返回示例
+
+``` json
+{
+  "status": 0,
+  "message": "",
+  "data": {
+    "rows": [
+      {
+        "url": "/u/christoph",
+        "triggerType": "user",
+        "title": "Christoph",
+        "createdDate": "1 天前",
+        "sentence": "高阳Sunny 关注了用户",
+        "excerpt": "浙江财经大学数据分析和大数据计算客座教授，德国不莱梅大学数学博士",
+        "actionName": "follow_user",
+        "detailSentence": "<a target=\"_blank\" href=\"/u/sunny\">高阳Sunny</a> 关注了用户",
+        "object": {
+            "id": "1030000008520536",
+            "name": "Christoph",
+            "status": "0",
+            "slug": "christoph",
+            "url": "/u/christoph",
+            "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/237/061/2370613837-58c1300bf2d46_big64",
+            "description": "浙江财经大学数据分析和大数据计算客座教授，德国不莱梅大学数学博士"
+        },
+        "meta": {
+            "followers": 2
+        },
+        "trigger": {
+            "id": "1030000000091294",
+            "name": "高阳Sunny",
+            "slug": "sunny",
+            "url": "/u/sunny",
+            "avatarUrl": "https://sfault-avatar.b0.upaiyun.com/373/745/3737454955-5493d7d24ab19_big64"
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
 请求参数 | | |
 -------------- | -------------- | -------------- |
 **page** | Int | 列表当前页面的标识，按 `pageSize` 将列表划分成多页，最小为1 |
@@ -707,7 +750,7 @@
 
 请求参数 | | |
 -------------- | -------------- | -------------- |
-**name** | String | 学校的名称 |
+**name** | String | 学校的名称，必须从 `/schools/search` 中搜索获得 |
 **major** | String | 在学校所学的专业 |
 **from** | String | 入学日期，YY-mm，例：2009-09 |
 **to** | String | 毕业日期，YY-mm，例：2013-06 |

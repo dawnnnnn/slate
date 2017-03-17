@@ -14,6 +14,7 @@ toc_footers:
 
 includes:
   - basis
+  - user
   - questions
   - answers
   - blogs
@@ -24,7 +25,7 @@ includes:
   - comments
   - favorites
   - tags
-  - user
+  - feed
   - assist
 
 
